@@ -1,0 +1,21 @@
+.student-card {
+    flex-basis: 15%;
+    margin: 10px;
+    height: 270px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 100ms ease-out;
+    box-shadow: 3px 3px 7px #AAAAAA;
+}
+.student-card:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.avatar-box {
+    width: 60%;
+}

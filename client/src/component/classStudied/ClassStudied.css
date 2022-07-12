@@ -1,0 +1,51 @@
+.studied-class {
+    margin-bottom: 10px;
+}
+
+.class-info {
+    height: 60px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 15rem auto 5rem;
+    gap: 1rem;
+    background: #F1F1F1;
+    align-items: center;
+    font-weight: 500;
+    font-size: 22px;
+}
+
+.down {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.down:hover {
+    cursor: pointer;
+    background: #B0B0B0;
+}
+
+.drop-down {
+    width: 100%;
+}
+
+.drop-down {
+    box-sizing: border-box;
+    padding: 10px 20px;
+    background: #F9F9F9;
+}
+
+.label {
+    display: grid;
+    grid-template-columns: 15rem 40rem auto 7rem;
+    margin-bottom: 5px;
+}
+
+.label-line {
+    height: 0;
+    width: 100%;
+    border-bottom: 2px solid #676767;
+    margin-bottom: 5px;
+}
