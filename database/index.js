@@ -1,6 +1,6 @@
 const Pool = require('pg').Pool;
 
-const devConfig = `postgres://${process.env.PG_USER}:${process.env.PG_PASSWORD}@${process.env.PG_HOST}:${process.env.PG_PORT}/${process.env.PG_DATABASE}`;
+const devConfig = `postgres://postgres:xnauiagnenhugny@localhost:5432/itss`;
 const proConfig = process.env.DATABASE_URL;
 
 const pool = new Pool({
@@ -8,4 +8,14 @@ const pool = new Pool({
     ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
 });
 
-module.exports = pool;
+async function poolDemo() {
+    const now = await pool.query('SELECT NOW()');
+    await pool.end();
+
+    return now;
+}
+
+module.exports = {
+    pool,
+    poolDemo
+};
