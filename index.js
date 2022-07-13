@@ -3,7 +3,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-
+const cookieParser = require('cookie-parser')
 const studentRouter = require("./routes/student.routes");
 const subjectRouter = require("./routes/subject.routes");
 const classRouter = require("./routes/class.routes");
@@ -19,9 +19,13 @@ poolDemo().then((result) => console.log(result.rows[0]));
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(cors({ origin: "*" }));
-
+app.use(cors({
+    origin: '*',
+    credentials: true,
+    optionsSuccessStatus: 200,
+  }))
+app.use(express.json())
+app.use(cookieParser())
 app.listen(port, () => console.log(`Running on port ${port}`));
 
 app.use("/student", studentRouter);

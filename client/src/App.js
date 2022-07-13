@@ -9,7 +9,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 function App() {
   return (
     <div className="App">  
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <Routes>
           <Route path='/login' element={<Login/>}/>    
         </Routes>
@@ -19,7 +19,8 @@ function App() {
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/achievement' element={<Achievement/>}/>
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
+      <Login/>
     </div>
   );
 }
