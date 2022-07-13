@@ -18,14 +18,15 @@ const port = process.env.PORT || 8000;
 poolDemo().then((result) => console.log(result.rows[0]));
 
 const app = express();
-app.use(express.urlencoded({ extended: true }));
-app.use(cors({
-    origin: '*',
+app.use(cors({ 
+    origin: 'http://localhost:3000',
     credentials: true,
-    optionsSuccessStatus: 200,
-  }))
-app.use(express.json())
-app.use(cookieParser())
+    optionsSuccessStatus: 200
+}));
+
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+app.use(cookieParser());
 app.listen(port, () => console.log(`Running on port ${port}`));
 
 app.use("/student", studentRouter);
