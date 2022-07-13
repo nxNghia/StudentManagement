@@ -7,6 +7,7 @@ const LogIn = async (req, res) => {
   try {
     const query_student = `SELECT * FROM Student WHERE email = '${email}';`;
     const user = await Student.query(query_student);
+    console.log(user.rows, email);
     if (user.rows[0]) {
       const valid = await bcrypt.compare(password, user.rows[0].password)
       if (valid) {
@@ -16,7 +17,7 @@ const LogIn = async (req, res) => {
         res.status(400).send({ message: "Wrong password!", email: email });
       }
     } else {
-        const query_admin = `SELECT * FROM Admin WHERE email = '${email}';`;
+        const query_admin = `SELECT * FROM "Admin" WHERE email = '${email}';`;
         const user = await Admin.query(query_admin);
         if (user.rows[0]) {
           const valid = await bcrypt.compare(password, user.rows[0].password)

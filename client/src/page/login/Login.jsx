@@ -7,7 +7,7 @@ const Login = () => {
   const [data, setData] = useState({email: '', password: ''})
   const handleLogIn = async() => {
     const API = axios.create({baseURL: "http://localhost:8000"})
-    const user = await API.post('/login',data)
+    const user = await API.post('/login', data, {withCredentials: true});
     if(user) {
       console.log(user)
     }
