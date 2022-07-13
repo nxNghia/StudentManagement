@@ -8,6 +8,7 @@ const studentRouter = require("./routes/student.routes");
 const subjectRouter = require("./routes/subject.routes");
 const classRouter = require("./routes/class.routes");
 const loginRouter = require("./routes/login.routes");
+const adminRouter = require("./routes/admin.routes")
 
 const { poolDemo } = require("./database");
 
@@ -27,3 +28,4 @@ app.use("/student", studentRouter);
 app.use("/subject", subjectRouter);
 app.use("/class", classRouter);
 app.use("/login", loginRouter);
+app.use("/admin", adminRouter)

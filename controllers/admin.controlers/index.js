@@ -1,31 +1,31 @@
-const Student = require('../../models/students.models');
+const Admin = require('../../models/admin.models');
 const bcrypt = require('bcrypt')
 const getAll = async (request, response) => {
     try {
         const filter = request.params.type ? { type: request.params.type, order: request.params.order } : undefined;
 
-        const result = await Student.getAll(filter);
+        const result = await Admin.getAll(filter);
 
         response.status(200).send(result);
     } catch (err) {
         console.log(err)
-        response.status(400).send({ message: 'Failed to get all students', ...err });
+        response.status(400).send({ message: 'Failed to get all admins', ...err });
     }
 }
 
 const getById = async (request, response) => {
     try {
-        const student_id = request.params.id;
+        const admin_id = request.params.id;
 
-        const result = await Student.getById(student_id);
+        const result = await Admin.getById(admin_id);
 
         if (result.length === 0) {
-            response.status(400).send({ message: 'Student does not exist', id: student_id });
+            response.status(400).send({ message: 'Admin does not exist', id: admin_id });
         } else {
             response.status(200).send(result);
         }
     } catch (err) {
-        response.status(400).send({ message: 'Failed to get student by id', ...err });
+        response.status(400).send({ message: 'Failed to get admin by id', ...err });
     }
 }
 
@@ -35,18 +35,15 @@ const add = async (request, response) => {
         const data = {
             email: request.body.email,
             password: request.body.password,
-            name: request.body.name,
-            gender: request.body.gender,
-            student_id: request.body.student_id,
-            cpa: request.body.cpa,
-            scholarship: request.body.scholarship
+            name: request.body.name
         };
         data.password = await bcrypt.hash(data.password,salt)
-        const result = await Student.add(data);
+        const result = await Admin.add(data);
 
         response.status(200).send(result);
     } catch (err) {
-        response.status(400).send({ message: 'Failed to add student', ...err });
+        console.log(err)
+        response.status(400).send({ message: 'Failed to add admin', ...err });
     }
 }
 
@@ -56,18 +53,14 @@ const update = async (request, response) => {
             id: request.body.id,
             email: request.body.email,
             password: request.body.password,
-            name: request.body.name,
-            gender: request.body.gender,
-            student_id: request.body.student_id,
-            cpa: request.body.cpa,
-            scholarship: request.body.scholarship
+            name: request.body.name
         };
 
-        const result = await Student.update(data);
+        const result = await Admin.update(data);
 
         response.status(200).send(result);
     } catch (err) {
-        response.status(400).send({ message: 'Failed to update student', ...err });
+        response.status(400).send({ message: 'Failed to update admin', ...err });
     }
 }
 
@@ -75,11 +68,11 @@ const remove = async (request, response) => {
     try {
         const id = request.body.id;
 
-        const result = Student.remove(id);
+        const result = Admin.remove(id);
 
         response.status(200).send({ message: `Remove student id = ${id} successfully`, ...result });
     } catch (err) {
-        response.status(400).send({ message: 'Failed to remove student', ...err });
+        response.status(400).send({ message: 'Failed to remove admin', ...err });
     }
 }
 
