@@ -10,7 +10,6 @@ const pool = new Pool({
 
 async function poolDemo() {
     const now = await pool.query('SELECT NOW()');
-    await pool.end();
 
     return now;
 }
