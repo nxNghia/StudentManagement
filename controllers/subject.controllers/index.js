@@ -16,7 +16,7 @@ const getById = async (request, response) => {
     try {
         const subject_id = request.params.id;
 
-        const result = await Subject.getById(student_id);
+        const result = await Subject.getById(subject_id);
 
         if (result.length === 0) {
             response.status(400).send({ message: 'Subject does not exist', id: subject_id });
@@ -59,6 +59,7 @@ const update = async (request, response) => {
 
         response.status(200).send(result);
     } catch (err) {
+        console.log(err);
         response.status(400).send({ message: 'Failed to update subject', ...err });
     }
 }

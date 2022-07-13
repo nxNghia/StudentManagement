@@ -24,7 +24,7 @@ const update = async (data) => {
         name = '${data.name}', 
         faculty = ${data.faculty}, 
         classes = ${data.classes}, 
-        credit = ${data.credit}, 
+        credit = ${data.credit} 
         WHERE id = ${data.id}`
     );
 
