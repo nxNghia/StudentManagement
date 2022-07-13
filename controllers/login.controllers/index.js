@@ -17,7 +17,7 @@ const LogIn = async (req, res) => {
         res.status(400).send({ message: "Wrong password!", email: email });
       }
     } else {
-        const query_admin = `SELECT * FROM "Admin" WHERE email = '${email}';`;
+        const query_admin = `SELECT * FROM Admin WHERE email = '${email}';`;
         const user = await Admin.query(query_admin);
         if (user.rows[0]) {
           const valid = await bcrypt.compare(password, user.rows[0].password)

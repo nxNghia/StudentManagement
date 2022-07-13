@@ -1,51 +1,61 @@
-import React from 'react'
-import Avatar from '../../img/user.svg'
+/** @format */
 
-import './Profile.css'
+import React from "react";
+import Avatar from "../../img/user.svg";
+import { useDispatch } from "react-redux";
+import { logOut } from "../../features/authSlice";
+import "./Profile.css";
 const Profile = () => {
+  const dispatch = useDispatch();
   return (
     <div className='profile'>
-        <h1>プロフィール</h1>
-        <div className='profile-content'>
-            <div className="profile-left">
-                <div className="user-img">
-                    <img src={Avatar} />
-                </div>
-                <button>プロフィールを変更する</button>
-            </div>
-            <div className="profile-right">
-                <div className="content">
-                    <div className='content-field'>名前</div>
-                    <span>George Washington</span>
-                </div>
-                <div className="content">
-                    <div className='content-field'>生年月日</div>
-                    <span>01/10/2000</span>
-                </div>
-                <div className="content">
-                    <div className='content-field'>メールアドレス</div>
-                    <span>geomail0110@gmail.com</span>
-                </div>
-                <div className="content">
-                    <div className='content-field'>性別</div>
-                    <span>男</span>
-                </div>
-                <div className="content">
-                    <div className='content-field'>学籍番号</div>
-                    <span>20184001</span>
-                </div>
-                <div className="content">
-                    <div className='content-field'>CPA</div>
-                    <span>3.4</span>
-                </div>
-                <div className="content">
-                    <div className='content-field'>スカラシップ</div>
-                    <span>無し</span>
-                </div>
-            </div>
+      <h1>プロフィール</h1>
+      <div className='profile-content'>
+        <div className='profile-left'>
+          <div className='user-img'>
+            <img src={Avatar} />
+          </div>
+          <button
+            onClick={() => {
+              dispatch(logOut());
+              localStorage.removeItem('user')
+            }}>
+            プロフィールを変更する
+          </button>
         </div>
+        <div className='profile-right'>
+          <div className='content'>
+            <div className='content-field'>名前</div>
+            <span>George Washington</span>
+          </div>
+          <div className='content'>
+            <div className='content-field'>生年月日</div>
+            <span>01/10/2000</span>
+          </div>
+          <div className='content'>
+            <div className='content-field'>メールアドレス</div>
+            <span>geomail0110@gmail.com</span>
+          </div>
+          <div className='content'>
+            <div className='content-field'>性別</div>
+            <span>男</span>
+          </div>
+          <div className='content'>
+            <div className='content-field'>学籍番号</div>
+            <span>20184001</span>
+          </div>
+          <div className='content'>
+            <div className='content-field'>CPA</div>
+            <span>3.4</span>
+          </div>
+          <div className='content'>
+            <div className='content-field'>スカラシップ</div>
+            <span>無し</span>
+          </div>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;
