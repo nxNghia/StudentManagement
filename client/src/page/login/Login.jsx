@@ -2,11 +2,11 @@
 
 import React, { useState } from "react";
 import Input from "../../component/input/Input";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../features/authSlice";
 import "./Login.css";
 import Cookie from "universal-cookie";
+import { API } from "../../app/API";
 const cookie = new Cookie();
 const Login = () => {
   const [data, setData] = useState({
@@ -15,9 +15,6 @@ const Login = () => {
   });
   const dispatch = useDispatch();
   const handleLogIn = async () => {
-    const API = axios.create({
-      baseURL: "http://localhost:8000",
-    });
     await API.post("/login", data, {
       withCredentials: true,
     })

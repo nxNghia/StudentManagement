@@ -6,15 +6,16 @@ import Header from "./component/header/Header";
 import Achievement from "./page/achievement/Achievement";
 import Manager from "./page/manager/Manager";
 import { useSelector } from "react-redux";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import "./App.css";
-import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 function App() {
-  const user = useSelector(state => state.user)
-  useEffect(()=> {
-    console.log(user)
-  
-  },[user])
+  const user = useSelector((state) => state.user);
   return (
     <div className='App'>
       {user.user ? (
@@ -22,16 +23,31 @@ function App() {
           <Header />
           <BrowserRouter>
             <Routes>
-              <Route path='/' element={<Manager />} />
-              <Route path='/profile' element={<Profile />} />
-              <Route path='/achievement' element={<Achievement />} />
+              <Route
+                path='/'
+                element={
+                  user.user.type === "student" ? (
+                    <Navigate to='profile' />
+                  ) : (
+                    <Navigate to='manager' />
+                  )
+                }
+              />
+              <Route
+                path='/profile'
+                element={<Profile />}
+              />
+              <Route
+                path='/manager'
+                element={<Manager />}
+              />
             </Routes>
           </BrowserRouter>
         </>
-      ) : (   
+      ) : (
         <>
           <Login />
-        </>     
+        </>
       )}
     </div>
   );

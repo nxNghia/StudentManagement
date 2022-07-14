@@ -2,11 +2,10 @@
 
 import React from "react";
 import Avatar from "../../img/user.svg";
-import { useDispatch } from "react-redux";
-import { logOut } from "../../features/authSlice";
+import { useSelector } from "react-redux";
 import "./Profile.css";
 const Profile = () => {
-  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
   return (
     <div className='profile'>
       <h1>プロフィール</h1>
@@ -15,42 +14,42 @@ const Profile = () => {
           <div className='user-img'>
             <img src={Avatar} />
           </div>
-          <button
-            onClick={() => {
-              dispatch(logOut());
-              localStorage.removeItem('user')
-            }}>
-            プロフィールを変更する
-          </button>
+          <button>プロフィールを変更する</button>
         </div>
         <div className='profile-right'>
           <div className='content'>
             <div className='content-field'>名前</div>
-            <span>George Washington</span>
+            <span>{user.name}</span>
           </div>
           <div className='content'>
             <div className='content-field'>生年月日</div>
-            <span>01/10/2000</span>
+            <span>{user.date}</span>
           </div>
           <div className='content'>
-            <div className='content-field'>メールアドレス</div>
-            <span>geomail0110@gmail.com</span>
+            <div className='content-field'>
+              メールアドレス
+            </div>
+            <span>{user.email}</span>
           </div>
           <div className='content'>
             <div className='content-field'>性別</div>
-            <span>男</span>
+            <span>{user.gender ? "男" : "女"}</span>
           </div>
           <div className='content'>
             <div className='content-field'>学籍番号</div>
-            <span>20184001</span>
+            <span>{user.student_id}</span>
           </div>
           <div className='content'>
             <div className='content-field'>CPA</div>
-            <span>3.4</span>
+            <span>{user.cpa}</span>
           </div>
           <div className='content'>
-            <div className='content-field'>スカラシップ</div>
-            <span>無し</span>
+            <div className='content-field'>
+              スカラシップ
+            </div>
+            <span>
+              {user.scholarship ? "有り" : "無し"}
+            </span>
           </div>
         </div>
       </div>
