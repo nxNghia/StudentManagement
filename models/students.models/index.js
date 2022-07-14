@@ -2,7 +2,9 @@
 
 const { pool } = require("../../database");
 
-const getAll = async (filter = { type: "id", order: "ASC" }) => {
+const getAll = async (
+  filter = { type: "id", order: "ASC" }
+) => {
   const result = await pool.query(
     `SELECT * FROM Student ORDER BY ${filter.type} ${filter.order}`
   );
@@ -11,15 +13,17 @@ const getAll = async (filter = { type: "id", order: "ASC" }) => {
 };
 
 const getById = async (id) => {
-  const result = await pool.query(`SELECT * FROM Student WHERE id = ${id}`);
+  const result = await pool.query(
+    `SELECT * FROM Student WHERE id = ${id}`
+  );
 
   return result.rows;
 };
 
 const add = async (data) => {
   const result =
-    await pool.query(`INSERT INTO Student (email, password, name, gender, student_id, cpa, scholarship) 
-        VALUES ('${data.email}', '${data.password}', '${data.name}', ${data.gender}, '${data.student_id}', ${data.cpa}, ${data.scholarship})`);
+    await pool.query(`INSERT INTO Student (email, password, name, gender, student_id, cpa, scholarship, date) 
+        VALUES ('${data.email}', '${data.password}', '${data.name}', ${data.gender}, '${data.student_id}', ${data.cpa}, ${data.scholarship}, '${data.date}')`);
 
   return result;
 };
@@ -32,14 +36,17 @@ const update = async (data) => {
         gender = ${data.gender}, 
         student_id = '${data.student_id}', 
         cpa = ${data.cpa}, 
-        scholarship = ${data.scholarship}
+        scholarship = ${data.scholarship},
+        date = '${data.date}'
         WHERE id = ${data.id}`);
 
   return result;
 };
 
 const remove = async (id) => {
-  const result = await pool.query(`DELETE FROM Student WHERE id = ${id}`);
+  const result = await pool.query(
+    `DELETE FROM Student WHERE id = ${id}`
+  );
 
   return result;
 };
@@ -56,5 +63,5 @@ module.exports = {
   add,
   update,
   remove,
-  query
+  query,
 };
