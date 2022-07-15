@@ -44,7 +44,25 @@ const getById = async (request, response) => {
     });
   }
 };
+const getAllClass = async (request, response) => {
+  try {
+    const subject_id = request.params.id;
 
+    const result = await Student.getAllClass(subject_id);
+
+    if (result.length === 0) {
+      response
+        .status(400)
+        .send({ message: "Student does not have classes", id: subject_id });
+    } else {
+      response.status(200).send(result);
+    }
+  } catch (err) {
+    response
+      .status(400)
+      .send({ message: "Failed to get classes by id", ...err });
+  }
+};
 const add = async (request, response) => {
   try {
     const salt = await bcrypt.genSalt(10);
@@ -64,14 +82,13 @@ const add = async (request, response) => {
 
     response.status(200).send(result);
   } catch (err) {
-    response
-      .status(400)
-      .send({ message: "Failed to add student", ...err });
+    response.status(400).send({ message: "Failed to add student", ...err });
   }
 };
 
 const update = async (request, response) => {
   try {
+    const salt = await bcrypt.genSalt(10);
     const data = {
       id: request.body.id,
       email: request.body.email,
@@ -84,6 +101,8 @@ const update = async (request, response) => {
       date: request.body.date,
     };
 
+    data.password = await bcrypt.hash(data.password, salt);
+    console.log(data);
     const result = await Student.update(data);
 
     response.status(200).send(result);
@@ -119,4 +138,5 @@ module.exports = {
   add,
   update,
   remove,
+  getAllClass,
 };

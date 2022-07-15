@@ -1,6 +1,7 @@
 /** @format */
 
 .student-card {
+  min-width: 180px;
   flex-basis: 15%;
   margin: 10px;
   height: 270px;

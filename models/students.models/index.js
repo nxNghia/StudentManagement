@@ -2,9 +2,7 @@
 
 const { pool } = require("../../database");
 
-const getAll = async (
-  filter = { type: "id", order: "ASC" }
-) => {
+const getAll = async (filter = { type: "id", order: "ASC" }) => {
   const result = await pool.query(
     `SELECT * FROM Student ORDER BY ${filter.type} ${filter.order}`
   );
@@ -13,10 +11,19 @@ const getAll = async (
 };
 
 const getById = async (id) => {
-  const result = await pool.query(
-    `SELECT * FROM Student WHERE id = ${id}`
-  );
+  const result = await pool.query(`SELECT * FROM Student WHERE id = ${id}`);
 
+  return result.rows;
+};
+const getAllClass = async (id) => {
+  const result = await pool.query(
+    `SELECT Subject.id , Subject.name, Classes.name ,Classes.id ,educationresult.result,educationresult.converttocharacter
+    FROM Subject INNER JOIN Classes
+    ON Classes.subject_id = subject.id
+    INNER JOIN educationresult
+    ON educationresult.class_id = classes.id
+    WHERE educationresult.student_id = ${id}`
+  );
   return result.rows;
 };
 
@@ -44,10 +51,7 @@ const update = async (data) => {
 };
 
 const remove = async (id) => {
-  const result = await pool.query(
-    `DELETE FROM Student WHERE id = ${id}`
-  );
-
+  const result = await pool.query(`DELETE FROM Student WHERE id = ${id}`);
   return result;
 };
 
@@ -64,4 +68,5 @@ module.exports = {
   update,
   remove,
   query,
+  getAllClass,
 };

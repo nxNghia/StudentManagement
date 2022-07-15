@@ -2,9 +2,8 @@
 
 import Login from "./page/login/Login";
 import Profile from "./page/profile/Profile";
-import Header from "./component/header/Header";
-import Achievement from "./page/achievement/Achievement";
 import Manager from "./page/manager/Manager";
+// import EditProfile from "./page/editProfile/EditProfile";
 import { useSelector } from "react-redux";
 import {
   BrowserRouter,
@@ -17,11 +16,13 @@ import { useState } from "react";
 import MODAL from "./component/MODAL/MODAL";
 function App() {
   const user = useSelector((state) => state.user);
+  const student = useSelector(
+    (state) => state.student.selectStudent
+  );
   return (
     <div className='App'>
       {user.user ? (
         <>
-          <Header />
           <BrowserRouter>
             <Routes>
               <Route
@@ -36,12 +37,32 @@ function App() {
               />
               <Route
                 path='/profile'
-                element={<Profile />}
+                element={
+                  <Profile
+                    user={
+                      user.user.type === "student"
+                        ? user.user
+                        : student
+                    }
+                  />
+                }
               />
               <Route
                 path='/manager'
                 element={<Manager />}
               />
+              {/* <Route
+                path='/edit-profile'
+                element={
+                  <EditProfile
+                    user={
+                      user.user.type === "student"
+                        ? user.user
+                        : student
+                    }
+                  />
+                }
+              /> */}
             </Routes>
           </BrowserRouter>
         </>
