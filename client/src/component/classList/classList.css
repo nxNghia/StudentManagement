@@ -1,0 +1,19 @@
+.classList {
+  margin: 30px;
+}
+.containerClassList {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin: 20px 0;
+}
+.inputClassList {
+  max-height: 40px;
+}
+.ant-btn {
+  display: flex;
+  position: relative;
+  pointer-events: none;
+  color: aliceblue;
+  background-color: #3faa9d;
+}
