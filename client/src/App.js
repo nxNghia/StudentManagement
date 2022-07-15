@@ -14,6 +14,7 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import { useState } from "react";
+import MODAL from "./component/MODAL/MODAL";
 function App() {
   const user = useSelector((state) => state.user);
   return (

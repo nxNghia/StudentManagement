@@ -1,0 +1,19 @@
+.form-b {
+    display: flex;
+    justify-content: space-between;
+}
+
+.foot-btn {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.ant-btn {
+    color: white;
+}
+
+.ant-btn:hover {
+    color: white;
+}
