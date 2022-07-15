@@ -6,7 +6,7 @@ import UserAvatar from "../../img/user.svg";
 import Logo from "../../img/Logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../features/authSlice";
-const Header = () => {
+const Header = ({ onLogOut }) => {
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   return (
@@ -27,6 +27,7 @@ const Header = () => {
           className='avatar'
           onClick={() => {
             dispatch(logOut());
+            onLogOut();
           }}>
           <img src={UserAvatar} alt='' />
         </div>

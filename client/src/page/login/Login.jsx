@@ -45,6 +45,7 @@ const Login = () => {
         onChange={(e) =>
           setData({ ...data, password: e.target.value })
         }
+        onKeyUp={handleLogIn}
       />
       <span>パスワードをお忘れ</span>
       <button onClick={handleLogIn}>ログイン</button>

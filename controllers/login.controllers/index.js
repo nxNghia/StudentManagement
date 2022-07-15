@@ -17,19 +17,15 @@ const LogIn = async (req, res) => {
           id: user.rows[0].id,
           type: "student",
         });
-        res
-          .status(200)
-          .send({
-            message: "Student login",
-            user: user.rows[0],
-          });
+        res.status(200).send({
+          message: "Student login",
+          user: user.rows[0],
+        });
       } else {
-        res
-          .status(400)
-          .send({
-            message: "Wrong password!",
-            email: email,
-          });
+        res.status(400).send({
+          message: "Wrong password!",
+          email: email,
+        });
       }
     } else {
       const query_admin = `SELECT * FROM Admin WHERE email = '${email}';`;
@@ -44,27 +40,21 @@ const LogIn = async (req, res) => {
             id: user.rows[0].id,
             type: "admin",
           });
-          res
-            .status(200)
-            .send({
-              message: "Admin login",
-              user: user.rows[0],
-            });
+          res.status(200).send({
+            message: "Admin login",
+            user: user.rows[0],
+          });
         } else {
-          res
-            .status(400)
-            .send({
-              message: "Wrong password!",
-              email: email,
-            });
-        }
-      } else {
-        res
-          .status(401)
-          .send({
-            message: "Account does not exist!",
+          res.status(400).send({
+            message: "Wrong password!",
             email: email,
           });
+        }
+      } else {
+        res.status(401).send({
+          message: "Account does not exist!",
+          email: email,
+        });
       }
     }
   } catch (err) {
