@@ -2,8 +2,6 @@
 
 import Login from "./page/login/Login";
 import StudentScreen from "./page/studentScreen/StudentScreen";
-import Profile from "./page/profile/Profile";
-import Manager from "./page/manager/Manager";
 // import EditProfile from "./page/editProfile/EditProfile";
 import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";

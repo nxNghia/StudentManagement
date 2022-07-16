@@ -43,14 +43,28 @@
 }
 
 .profile-right {
+  margin: 0 auto;
+  align-self: center;
   display: flex;
   flex-direction: column;
 }
-
+.content > input {
+  border-radius: 7px;
+  width: 400px;
+  padding: 0 5px;
+  box-sizing: border-box;
+}
+input[type="password"]::placeholder {
+  font-size: 15px !important;
+}
 .content {
   display: flex;
   font-size: 20px;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+}
+
+.profile-right > .btn-container {
+  align-self: center;
 }
 
 .content-field {

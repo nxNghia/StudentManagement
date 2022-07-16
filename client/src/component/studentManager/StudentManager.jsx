@@ -53,7 +53,7 @@ const StudentManager = () => {
           <div className="time" onClick={()=> {
             setSelected(null)
           }}>
-            <i class="fa fa-times" aria-hidden="true"></i>
+            <i className="fa fa-times" aria-hidden="true"></i>
           </div>
           <Profile user={selected} />
         </div>

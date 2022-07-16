@@ -17,7 +17,7 @@ const Input = ({
     }
   };
   return (
-    <input
+    <input className="Input"
       type={type}
       placeholder={placeholder}
       style={{
