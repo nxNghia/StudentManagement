@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Tabs from "../../component/Tabs/Tabs";
 import Profile from "../profile/Profile";
 import SubjectList from "../../component/SubjectList/index";
-import ClassList from "../../component/classList/ClassList";
+import ClassList from "../../component/classList/classList";
 import Header from "../../component/header/Header";
 import Achievement from '../achievement/Achievement'
 import { userSelector } from "../../selectors/user.selector";

@@ -9,11 +9,10 @@ import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import { API } from "./app/API";
-import { useState, useEffect } from "react";
+import {  useEffect } from "react";
 import ManagerScreen from "./page/managerScreen/ManagerScreen";
 import Cookies from "universal-cookie";
-import { useDispatch } from "react-redux";
-import { logIn } from "./features/authSlice";
+import { useDispatch} from "react-redux";
 import { login } from "./actions/user.actions";
 import { loginStateSelector, userSelector } from "./selectors/user.selector";
 const cookie = new Cookies();
@@ -60,18 +59,6 @@ function App() {
               />
               <Route path="/student" element={<StudentScreen />} />
               <Route path="/manager" element={<ManagerScreen />} />
-              {/* <Route
-                path='/edit-profile'
-                element={
-                  <EditProfile
-                    user={
-                      user.user.type === "student"
-                        ? user.user
-                        : student
-                    }
-                  />
-                }
-              /> */}
             </Routes>
           </BrowserRouter>
         </>

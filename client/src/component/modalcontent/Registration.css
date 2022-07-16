@@ -1,0 +1,16 @@
+.registration {
+    position: absolute;
+    width: 40%;
+    background: #ffffff;
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 10px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.register-content {
+    margin-bottom: 20px;
+}
