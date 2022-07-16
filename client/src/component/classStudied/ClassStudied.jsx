@@ -1,5 +1,9 @@
 /** @format */
 
+import React, { useState } from "react";
+import Up from '../../img/up.svg';
+import Down from '../../img/down.svg';
+
 const convertCharacter = grade => {
     if (grade >= 3.5)
         return 'A';

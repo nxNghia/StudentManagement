@@ -20,7 +20,6 @@ import {
   userSelector,
 } from "./selectors/user.selector";
 import { getAllFaculties } from "./actions/common.actions";
-import { loginStateSelector, userSelector } from "./selectors/user.selector";
 const cookie = new Cookies();
 function App() {
   const dispatch = useDispatch();
