@@ -1,0 +1,35 @@
+.classList {
+  margin: 30px;
+}
+.containerClassList {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin: 20px 0;
+}
+.inputClassList {
+  max-height: 40px;
+}
+.ant-btn {
+  display: flex;
+  position: relative;
+  pointer-events: none;
+  color: aliceblue;
+  background-color: #3faa9d;
+}
+.subject-table__cell {
+  margin-bottom: 0;
+}
+.table-striped-rows .ant-table-tbody tr:nth-child(2n) td {
+  /* background-color: #E7E7E7; */
+}
+.table-striped-rows .ant-table-tbody > tr:hover td{
+  background: #eaf1ec !important;
+  cursor: pointer;
+  text-align: start;
+}
+
+.table-striped-rows .ant-table-thead>tr>th {
+  background-color: #eeeeee;
+  font-weight: bold;
+}
