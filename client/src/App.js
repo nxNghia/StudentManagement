@@ -19,14 +19,18 @@ import {
   loginStateSelector,
   userSelector,
 } from "./selectors/user.selector";
+import { getAllFaculties } from "./actions/common.actions";
+import { loginStateSelector, userSelector } from "./selectors/user.selector";
 const cookie = new Cookies();
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
   // const [isLogin, setIsLogin] = useState(false)
   const isLogin = useSelector(loginStateSelector);
+  
   useEffect(() => {
     const auth = cookie.get("user");
+    dispatch(getAllFaculties());
     if (auth) {
       if (isLogin === false) {
         API.get(`/student/get/${auth.id}`)

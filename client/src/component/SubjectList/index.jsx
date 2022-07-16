@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import List from "../List/List";
 import "./styles.css";
 import "antd/dist/antd.min.css";
@@ -8,121 +8,26 @@ import MODAL from "../MODAL/MODAL";
 import SubjectModal from "../modalcontent/SubjectModal";
 import Registration from "../modalcontent/Registration";
 import Input from "../input/Input";
-const data = [
-  {
-    id: "1",
-    subject: "IT日本語",
-    university: "SoICT",
-    credit: 3,
-    class: 3,
-  },
-  {
-    id: "1",
-    subject: "IT日本語",
-    university: "SoICT",
-    credit: 3,
-    class: 3,
-  },
-  {
-    id: "1",
-    subject: "IT日本語",
-    university: "SoICT",
-    credit: 3,
-    class: 3,
-  },
-  {
-    id: "1",
-    subject: "IT日本語",
-    university: "SoICT",
-    credit: 3,
-    class: 3,
-  },
-  {
-    id: "1",
-    subject: "IT日本語",
-    university: "SoICT",
-    credit: 3,
-    class: 3,
-  },
-  {
-    id: "1",
-    subject: "IT日本語",
-    university: "SoICT",
-    credit: 3,
-    class: 3,
-  },
-  {
-    id: "1",
-    subject: "IT日本語",
-    university: "SoICT",
-    credit: 3,
-    class: 3,
-  },
-  {
-    id: "1",
-    subject: "IT日本語",
-    university: "SoICT",
-    credit: 3,
-    class: 3,
-  },
-  {
-    id: "1",
-    subject: "IT日本語",
-    university: "SoICT",
-    credit: 3,
-    class: 3,
-  },
-  {
-    id: "1",
-    subject: "IT日本語",
-    university: "SoICT",
-    credit: 3,
-    class: 3,
-  },
-  {
-    id: "1",
-    subject: "IT日本語",
-    university: "SoICT",
-    credit: 3,
-    class: 3,
-  },
-  {
-    id: "1",
-    subject: "IT日本語",
-    university: "SoICT",
-    credit: 3,
-    class: 3,
-  },
-  {
-    id: "1",
-    subject: "IT日本語",
-    university: "SoICT",
-    credit: 3,
-    class: 3,
-  },
-  {
-    id: "1",
-    subject: "IT日本語",
-    university: "SoICT",
-    credit: 3,
-    class: 3,
-  },
-];
-const columnName = [
-  "ID",
-  "科目名",
-  "学部",
-  "クレジット",
-  "クラス数",
-];
+import { useDispatch, useSelector } from "react-redux";
+import { allSubjectsSelector } from "../../selectors/subject.selector";
+import { getAllSubjects } from "../../actions/subject.actions";
+
+const columnName = ['ID', '科目名', '学部', 'クレジット', 'クラス数']
 const SubjectList = ({ canAdd }) => {
+  const dispatch = useDispatch();
+  const data = useSelector(allSubjectsSelector)
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const [source, setSource] = useState(null);
   const handleOnclick = (index) => {
-    setIsOpen2(true);
-    setSource({ ...data[index] });
-  };
+    setIsOpen2(true)
+    setSource({...data[index]})
+  }
+
+  useEffect(() => {
+    dispatch(getAllSubjects());
+  }, []);
+
   return (
     <div className='classList'>
       <div

@@ -2,8 +2,8 @@
 
 import { createSelector } from "reselect";
 
-const getUser = (state) => state.user;
-const getLoginState = (state) => state.isLogin;
+const getUser = state => state.userReducer.user;
+const getLoginState = state => state.userReducer.isLogin;
 
 export const userSelector = createSelector(
   getUser,
