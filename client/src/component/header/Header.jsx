@@ -6,8 +6,16 @@ import UserAvatar from "../../img/user.svg";
 import Logo from "../../img/Logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../features/authSlice";
+import { userSelector } from "../../selectors/user.selector";
+import { useEffect } from "react";
 const Header = ({ onLogOut }) => {
   const user = useSelector((state) => state.user.user);
+  const userData = useSelector(userSelector);
+
+  useEffect(() => {
+    console.log('abc');
+    console.log(userData);
+  }, [userData]);
   const dispatch = useDispatch();
   return (
     <div className='header'>
@@ -20,8 +28,8 @@ const Header = ({ onLogOut }) => {
       </div>
       <div className='user-info'>
         <div className='info'>
-          {user.name}
-          <span>{user.student_id}</span>
+          {userData.name}
+          <span>{userData.student_id}</span>
         </div>
         <div
           className='avatar'
