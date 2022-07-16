@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import Avatar from "../../img/user.svg";
+import ClassStudied from "../../component/classStudied/ClassStudied";
+import { Lessons } from "../../data/lessons";
 import "./Profile.css";
 const Profile = ({ user }) => {
   const [isEdit, setIsEdit] = useState(false);
@@ -154,6 +156,10 @@ const Profile = ({ user }) => {
             )}
           </div>
         </div>
+        <h2>成績</h2>
+        <ClassStudied name='IT日本語 1' assess='4.0 (A+)' lessons={Lessons} edit={edit} setEdit={() => setEdit(true)}/>
+        <ClassStudied name='IT日本語 2' assess='3.5 (A)'/>
+        <ClassStudied name='IT日本語 3'/>
       </div>
     </div>
   );
