@@ -1,4 +1,6 @@
-const initState = {};
+const initState = {
+    classes: []
+};
 
 export const classReducer = (state = initState, action) => {
     switch (action.type)
