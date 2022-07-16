@@ -15,6 +15,7 @@ const getById = async (id) => {
 
   return result.rows;
 };
+
 const getAllClass = async (id) => {
   const result = await pool.query(
     `SELECT Subject.id , Subject.name, Classes.name ,Classes.id ,educationresult.result,educationresult.converttocharacter
@@ -35,10 +36,12 @@ const add = async (data) => {
   return result;
 };
 
-const update = async (data) => {
+const update = async (data, updatePassword) => {
+  const passwordUpdateQuery = updatePassword ? `password = '${data.password}', ` : '';
+
   const result = await pool.query(`UPDATE Student SET 
         email = '${data.email}', 
-        password = '${data.password}', 
+        ${passwordUpdateQuery}
         name = '${data.name}', 
         gender = ${data.gender}, 
         student_id = '${data.student_id}', 
