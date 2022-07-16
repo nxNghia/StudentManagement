@@ -64,6 +64,72 @@ const getAllClass = async (request, response) => {
       .send({ message: "Failed to get classes by id", ...err });
   }
 };
+const CourseRegister = async (request, response) => {
+  try {
+    if (request.body.subject_id) {
+      if (request.body.class_id) {
+        const data = {
+          student_id: request.body.student_id,
+          class_id: request.body.class_id,
+          subject_id: request.body.subject_id,
+        };
+
+        const message = "Successfully registered for the class";
+        const result = await Student.classRegister(data);
+        response.status(200).send(message);
+      } else {
+        data = {
+          student_id: request.body.student_id,
+          subject_id: request.body.subject_id,
+        };
+
+        message = "Successfully registered for the subject";
+        const result = await Student.subjectRegister(data);
+        response.status(200).send(message);
+      }
+    } else {
+      message = "Failed to register for subject or class";
+      response.status(200).send(message);
+    }
+  } catch (err) {
+    response
+      .status(400)
+      .send({ message: "Failed to registered course", ...err });
+  }
+};
+
+const cancelCourseRegister = async (request, response) => {
+  try {
+    if (request.body.subject_id) {
+      if (request.body.class_id) {
+        const data = {
+          student_id: request.body.student_id,
+          class_id: request.body.class_id,
+          subject_id: request.body.subject_id,
+        };
+
+        const message = "Successfully canceled register for the class";
+        const result = await Student.cancelClassRegister(data);
+        response.status(200).send(message);
+      } else {
+        data = {
+          student_id: request.body.student_id,
+          subject_id: request.body.subject_id,
+        };
+        message = "Successfully canceled register for the subject";
+        const result = await Student.cancelSubjectRegister(data);
+        response.status(200).send(message);
+      }
+    } else {
+      message = "Failed to cancel register for subject or class";
+      response.status(200).send(message);
+    }
+  } catch (err) {
+    response
+      .status(400)
+      .send({ message: "Failed to cancel registered course", ...err });
+  }
+};
 
 const add = async (request, response) => {
   try {
@@ -103,12 +169,12 @@ const update = async (request, response) => {
       date: request.body.date,
     };
 
-    const updatePassword = Boolean(request.body.password.length !== 0); 
+    const updatePassword = Boolean(request.body.password.length !== 0);
 
     data.password = await bcrypt.hash(data.password, salt);
     const result = await Student.update(data, updatePassword);
 
-    response.status(200).send({...result, updatePassword});
+    response.status(200).send({ ...result, updatePassword });
   } catch (err) {
     response.status(400).send({
       message: "Failed to update student",
@@ -142,4 +208,6 @@ module.exports = {
   update,
   remove,
   getAllClass,
+  CourseRegister,
+  cancelCourseRegister,
 };

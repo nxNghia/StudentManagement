@@ -28,6 +28,40 @@ const getAllClass = async (id) => {
   return result.rows;
 };
 
+const subjectRegister = async (data) => {
+  console.log(data);
+  const result =
+    await pool.query(`INSERT INTO educationResult (student_id,subject_id) 
+        VALUES (${data.student_id}, ${data.subject_id})`);
+
+  return result;
+};
+
+const classRegister = async (data) => {
+  const result =
+    await pool.query(`UPDATE educationResult SET class_id=${data.class_id}
+    WHERE student_id= ${data.student_id} AND subject_id=${data.subject_id} 
+    AND class_id IS NULL AND result IS NULL AND converttocharacter IS NULL`);
+
+  return result;
+};
+
+const cancelSubjectRegister = async (data) => {
+  const result = await pool.query(`DELETE FROM educationresult 
+    WHERE student_id= ${data.student_id} AND subject_id=${data.subject_id} 
+    AND class_id IS NULL AND result IS NULL AND converttocharacter IS NULL
+    `);
+  return result;
+};
+
+const cancelClassRegister = async (data) => {
+  const result = await pool.query(`UPDATE  educationresult SET class_id = NULL
+    WHERE student_id= ${data.student_id} AND subject_id=${data.subject_id} 
+    AND class_id=${data.class_id}  AND result IS NULL AND converttocharacter IS NULL
+    `);
+  return result;
+};
+
 const add = async (data) => {
   const result =
     await pool.query(`INSERT INTO Student (email, password, name, gender, student_id, cpa, scholarship, date) 
@@ -72,4 +106,8 @@ module.exports = {
   remove,
   query,
   getAllClass,
+  subjectRegister,
+  classRegister,
+  cancelSubjectRegister,
+  cancelClassRegister,
 };
