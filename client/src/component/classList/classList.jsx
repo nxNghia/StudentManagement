@@ -1,8 +1,9 @@
-import React from "react";
-import { Table, Button } from "antd";
+import React, {useState} from "react";
+import { Table} from "antd";
 import "./classList.css";
 import "antd/dist/antd.min.css";
-
+import MODAL from '../MODAL/MODAL'
+import ClassModal from '../modalcontent/ClassModal'
 const data = [
   {
     id: "1",
@@ -88,30 +89,20 @@ const columns = [
   },
 ];
 
-const classList = () => {
+const ClassList = ({canAdd}) => {
+  const [isOpen, setIsOpen] = useState(false)
   return (
     <div className="classList">
-      <div className="containerClassList">
-        <Button style={{ borderRadius: "5px" }}>追加</Button>
+      <div className="containerClassList" style={{justifyContent: canAdd ? 'space-between' : 'flex-end'}}>
+        {canAdd && <button onClick={()=>setIsOpen(true)} className="add" style={{ borderRadius: "5px" }}>追加</button>}
         <input type="text" name="" id="" className="inputClassList" />
       </div>
       <div>
         <Table columns={columns} dataSource={data} />
       </div>
+      <MODAL open={isOpen} setClose={()=> {setIsOpen(false)}} body = {<ClassModal/>}/>
     </div>
   );
 };
 
-export default classList;
-
-// export default function classList() {
-//   return (
-//     <div>
-//       <form action="">
-//         <button className="追加">追加</button>
-//         <input type="text" name="classListInput" id="classListInput" />
-//       </form>
-
-//     </div>
-//   );
-// }
+export default ClassList;

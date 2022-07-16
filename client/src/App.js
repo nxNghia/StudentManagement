@@ -1,9 +1,7 @@
 /** @format */
 
 import Login from "./page/login/Login";
-import Profile from "./page/profile/Profile";
-import Manager from "./page/manager/Manager";
-// import EditProfile from "./page/editProfile/EditProfile";
+import StudentScreen from "./page/studentScreen/StudentScreen";
 import { useSelector } from "react-redux";
 import {
   BrowserRouter,
@@ -12,63 +10,67 @@ import {
   Navigate,
 } from "react-router-dom";
 import "./App.css";
-import { useState } from "react";
-import MODAL from "./component/MODAL/MODAL";
+import { API } from "./app/API";
+import { useState, useEffect } from "react";
+import ManagerScreen from "./page/managerScreen/ManagerScreen";
+import Cookies from "universal-cookie";
+import { useDispatch} from "react-redux";
+import { logIn } from "./features/authSlice";
+const cookie = new Cookies()
 function App() {
-  const user = useSelector((state) => state.user);
-  const student = useSelector(
-    (state) => state.student.selectStudent
-  );
+  const dispatch = useDispatch()
+  const [user, setUser] = useState(undefined)
+  const [isLogin, setIsLogin] = useState(false)
+  useEffect(() => {
+    const auth = cookie.get('user')
+    if(auth) {
+      setUser(auth);
+      console.log(user)
+      if(isLogin === false && auth) {
+        API.get(`/student/get/${auth.id}`).then((res)=> {
+          setIsLogin(true)
+          const data = res.data[0]
+          dispatch(logIn({
+            ...data,
+            type: auth.type,
+          }))
+        }).catch(e => {console.log(e)})
+      }
+    }
+  }, [isLogin]);
+  console.log(useSelector((state)=> state.user.user))
   return (
     <div className='App'>
-      {user.user ? (
+      {user ? (
         <>
           <BrowserRouter>
             <Routes>
               <Route
                 path='/'
                 element={
-                  user.user.type === "student" ? (
-                    <Navigate to='profile' />
+                  user.type === "student" ? (
+                    <Navigate to='student' />
                   ) : (
                     <Navigate to='manager' />
                   )
                 }
               />
               <Route
-                path='/profile'
+                path='/student'
                 element={
-                  <Profile
-                    user={
-                      user.user.type === "student"
-                        ? user.user
-                        : student
-                    }
-                  />
+                  <StudentScreen/>
                 }
               />
               <Route
                 path='/manager'
-                element={<Manager />}
+                element={<ManagerScreen />}
               />
-              {/* <Route
-                path='/edit-profile'
-                element={
-                  <EditProfile
-                    user={
-                      user.user.type === "student"
-                        ? user.user
-                        : student
-                    }
-                  />
-                }
-              /> */}
             </Routes>
           </BrowserRouter>
         </>
       ) : (
         <>
-          <Login />
+          <Login setIsLogin={setIsLogin}/>
         </>
       )}
     </div>

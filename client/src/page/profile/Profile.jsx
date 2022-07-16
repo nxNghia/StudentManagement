@@ -1,21 +1,12 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Avatar from "../../img/user.svg";
-import Header from "../../component/header/Header";
-import { useSelector } from "react-redux";
 import "./Profile.css";
-import { useNavigate } from "react-router-dom";
 const Profile = ({ user }) => {
-  const navigate = useNavigate();
 
   return (
     <div>
-      <Header
-        onLogOut={() => {
-          navigate("/");
-        }}
-      />
       <div className='profile'>
         <h1>プロフィール</h1>
         <div className='profile-content'>

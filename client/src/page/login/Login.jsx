@@ -2,13 +2,13 @@
 
 import React, { useState } from "react";
 import Input from "../../component/input/Input";
-import { useDispatch } from "react-redux";
+import { useDispatch, } from "react-redux";
 import { logIn } from "../../features/authSlice";
 import "./Login.css";
 import Cookie from "universal-cookie";
 import { API } from "../../app/API";
 const cookie = new Cookie();
-const Login = () => {
+const Login = ({setIsLogin}) => {
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -23,7 +23,7 @@ const Login = () => {
           ...res.data.user,
           type: cookie.get("user").type,
         };
-        localStorage.setItem("user", JSON.stringify(user));
+        setIsLogin(true)
         dispatch(logIn(user));
       })
       .catch((err) => console.log(err));

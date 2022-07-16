@@ -1,0 +1,29 @@
+.Tabs {
+    display: flex;
+    background: #00E8CC;
+    width: 100%;
+    height: 45px;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.Tabs > div {
+    width: 130px;
+    height: 100%;
+    background: transparent;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 45px;
+}
+
+.Tabs > div:hover {
+    cursor: pointer;
+}
+
+.tab-active {
+    background: #00D2B9 !important;
+}

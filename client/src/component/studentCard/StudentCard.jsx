@@ -5,22 +5,12 @@ import "./StudentCard.css";
 import UserAvatar from "../../img/user.svg";
 import { useDispatch } from "react-redux";
 import { setStudent } from "../../features/studentSlice";
-import { Link } from "react-router-dom";
-const StudentCard = ({ student }) => {
+import {  } from "react-router-dom";
+const StudentCard = ({ student, onClick }) => {
   const dispatch = useDispatch();
-  const handleSelectStudent = () => {
-    dispatch(setStudent(student));
-  };
   return (
-    <Link
-      to={`/profile`}
-      style={{
-        textDecoration: "none",
-        color: "#000000",
-      }}>
       <div
-        className='student-card'
-        onClick={handleSelectStudent}>
+        className='student-card' onClick={onClick}>
         <div className='avatar-box'>
           <img src={UserAvatar} />
         </div>
@@ -28,7 +18,6 @@ const StudentCard = ({ student }) => {
         <div>{student.student_id}</div>
         <div>CPA: {student.cpa}</div>
       </div>
-    </Link>
   );
 };
 
