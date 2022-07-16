@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import StudentManager from "../../component/studentManager/StudentManager";
-import ClassList from "../../component/classList/ClassList";
+import ClassList from "../../component/classList/classList";
 import SubjectList from "../../component/SubjectList";
 import Tabs from "../../component/Tabs/Tabs";
 import Header from "../../component/header/Header";
