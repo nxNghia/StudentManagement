@@ -44,6 +44,7 @@ const getById = async (request, response) => {
     });
   }
 };
+
 const getAllClass = async (request, response) => {
   try {
     const subject_id = request.params.id;
@@ -63,6 +64,7 @@ const getAllClass = async (request, response) => {
       .send({ message: "Failed to get classes by id", ...err });
   }
 };
+
 const add = async (request, response) => {
   try {
     const salt = await bcrypt.genSalt(10);
@@ -101,11 +103,12 @@ const update = async (request, response) => {
       date: request.body.date,
     };
 
-    data.password = await bcrypt.hash(data.password, salt);
-    console.log(data);
-    const result = await Student.update(data);
+    const updatePassword = Boolean(request.body.password.length !== 0); 
 
-    response.status(200).send(result);
+    data.password = await bcrypt.hash(data.password, salt);
+    const result = await Student.update(data, updatePassword);
+
+    response.status(200).send({...result, updatePassword});
   } catch (err) {
     response.status(400).send({
       message: "Failed to update student",
