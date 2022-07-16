@@ -9,7 +9,7 @@ import "./Login.css";
 import Cookie from "universal-cookie";
 import { API } from "../../app/API";
 const cookie = new Cookie();
-const Login = ({setIsLogin}) => {
+const Login = () => {
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -24,8 +24,8 @@ const Login = ({setIsLogin}) => {
           ...res.data.user,
           type: cookie.get("user").type,
         };
-        setIsLogin(true)
-        dispatch(logIn(user));
+        // setIsLogin(true)
+        // dispatch(logIn(user));
         dispatch(login(user));
       })
       .catch((err) => console.log(err));
