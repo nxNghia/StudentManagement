@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import Input from "../../component/input/Input";
-import { useDispatch } from "react-redux";
+import { useDispatch, } from "react-redux";
 import { logIn } from "../../features/authSlice";
+import { login } from "../../actions/user.actions";
 import "./Login.css";
 import Cookie from "universal-cookie";
 import { API } from "../../app/API";
@@ -23,8 +24,9 @@ const Login = () => {
           ...res.data.user,
           type: cookie.get("user").type,
         };
-        localStorage.setItem("user", JSON.stringify(user));
-        dispatch(logIn(user));
+        // setIsLogin(true)
+        // dispatch(logIn(user));
+        dispatch(login(user));
       })
       .catch((err) => console.log(err));
   };

@@ -26,9 +26,9 @@ const ClassStudied = ({name, assess, lessons}) => {
                         <div>成績</div>
                     </div>
                     <div className="label-line"></div>
-                    {lessons.map((lesson) => {
+                    {lessons.map((lesson, index) => {
                         return (
-                            <div className='label'>
+                            <div key={index} className='label'>
                                 <div>{lesson.date}</div>
                                 <div>{lesson.lessonName}</div>
                                 <div>{lesson.attendance}</div>

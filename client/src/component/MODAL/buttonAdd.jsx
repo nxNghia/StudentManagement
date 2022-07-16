@@ -11,10 +11,6 @@ const ButtonAdd = () => {
         setIsModalVisible(true);
     };
 
-    const handleOk = () => {
-
-    };
-
     const handleCancel = () => {
         setIsModalVisible(false);
     };
