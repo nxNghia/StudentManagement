@@ -6,7 +6,7 @@ import "./styles.css";
 import "antd/dist/antd.min.css";
 import MODAL from "../MODAL/MODAL";
 import SubjectModal from "../modalcontent/SubjectModal";
-import ClassSubjectModal from "../modalcontent/ClassSubjectModal";
+import Registration from "../modalcontent/Registration";
 const data = [
   {
     id: "1",
@@ -111,8 +111,10 @@ const columnName = ['ID', '科目名', '学部', 'クレジット', 'クラス�
 const SubjectList = ({ canAdd }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false)
+  const [source, setSource] = useState(null)
   const handleOnclick = (index) => {
     setIsOpen2(true)
+    setSource({...data[index]})
   }
   return (
     <div className='classList'>
@@ -142,7 +144,7 @@ const SubjectList = ({ canAdd }) => {
       </div>
       <List onClick={id => handleOnclick(id)} lists={data} columnName={columnName} special={[2]} ratio='5% auto 21%  18% 14%'/>
       <MODAL body={<SubjectModal/>} open={isOpen} setClose={()=> {setIsOpen(false)}} />
-      <MODAL body={<ClassSubjectModal/>} open={isOpen2} setClose={()=> {setIsOpen2(false)}} />
+      {canAdd === false && <MODAL body={<Registration label='subject' soureName={source}/>} open={isOpen2} setClose={()=> {setIsOpen2(false)}} />}
     </div>
   );
 };
