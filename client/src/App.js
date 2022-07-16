@@ -16,6 +16,7 @@ import ManagerScreen from "./page/managerScreen/ManagerScreen";
 import Cookies from "universal-cookie";
 import { useDispatch} from "react-redux";
 import { logIn } from "./features/authSlice";
+import { login } from "./actions/user.actions";
 const cookie = new Cookies()
 function App() {
   const dispatch = useDispatch()
@@ -25,7 +26,6 @@ function App() {
     const auth = cookie.get('user')
     if(auth) {
       setUser(auth);
-      console.log(user)
       if(isLogin === false && auth) {
         API.get(`/student/get/${auth.id}`).then((res)=> {
           setIsLogin(true)
@@ -33,6 +33,10 @@ function App() {
           dispatch(logIn({
             ...data,
             type: auth.type,
+          }))
+          dispatch(login({
+            ...data,
+            type: 'LOGIN'
           }))
         }).catch(e => {console.log(e)})
       }

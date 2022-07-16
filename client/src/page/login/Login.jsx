@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Input from "../../component/input/Input";
 import { useDispatch, } from "react-redux";
 import { logIn } from "../../features/authSlice";
+import { login } from "../../actions/user.actions";
 import "./Login.css";
 import Cookie from "universal-cookie";
 import { API } from "../../app/API";
@@ -25,6 +26,7 @@ const Login = ({setIsLogin}) => {
         };
         setIsLogin(true)
         dispatch(logIn(user));
+        dispatch(login(user));
       })
       .catch((err) => console.log(err));
   };
