@@ -5,6 +5,7 @@ import MODAL from '../MODAL/MODAL'
 import ClassModal from '../modalcontent/ClassModal'
 import Registration from "../modalcontent/Registration";
 import List from '../List/List'
+import Input from "../input/Input";
 const data = [
   {
     id: "1",
@@ -80,7 +81,7 @@ const ClassList = ({canAdd}) => {
     <div className="classList">
       <div className="containerClassList" style={{justifyContent: canAdd ? 'space-between' : 'flex-end'}}>
         {canAdd && <button onClick={()=>setIsOpen(true)} className="add" style={{ borderRadius: "5px" }}>追加</button>}
-        <input type="text" name="" id="" className="inputClassList" />
+        <Input/>
       </div>
       <List onClick={id => handleOnclick(id)} lists={data} columnName={columnName} special={[2]} ratio='5% auto 21%  18% 14%'/>
       <MODAL open={isOpen} setClose={()=> {setIsOpen(false)}} body = {<ClassModal/>}/>

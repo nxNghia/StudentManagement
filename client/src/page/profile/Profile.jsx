@@ -60,7 +60,9 @@ const Profile = ({ user }) => {
               </button>
             </div>
           )}
-          <div className='profile-right' style={{margin: isEdit ? '0 auto' : '0'}}>
+          <div
+            className='profile-right'
+            style={{ margin: isEdit ? "0 auto" : "0" }}>
             <div className='content'>
               <div className='content-field'>名前</div>
               {isEdit ? (

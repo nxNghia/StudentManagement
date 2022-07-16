@@ -35,7 +35,9 @@ const SubjectModal = () => {
         <button className='accept-add' onClick={handleSave}>
           保存
         </button>
-        <button className='deny-add' onClick={handleSave}>キャンセル</button>
+        <button className='deny-add' onClick={handleSave}>
+          キャンセル
+        </button>
       </div>
     </div>
   );

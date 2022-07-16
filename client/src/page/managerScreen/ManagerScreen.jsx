@@ -27,9 +27,9 @@ const ManagerScreen = () => {
         setTab={setTab}
         listTab={managerTabs}
       />
-      {tab === 1 && <StudentManager/>}
-      {tab === 2 && <SubjectList canAdd={true}/>}
-      {tab === 3 && <ClassList canAdd={true}/>}
+      {tab === 1 && <StudentManager />}
+      {tab === 2 && <SubjectList canAdd={true} />}
+      {tab === 3 && <ClassList canAdd={true} />}
     </div>
   );
 };

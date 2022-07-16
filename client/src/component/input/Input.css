@@ -1,11 +1,13 @@
+/** @format */
+
 .Input {
-    width: 30%;
-    line-height: 25px;
-    padding: 5px 10px;
-    font-size: 1rem;
-    border: 2px solid #676767;
-    border-radius: 20px;
-    margin-bottom: 10px;
-    display: block;
-    margin: auto 0;
+  width: 30%;
+  line-height: 25px;
+  padding: 5px 10px;
+  font-size: 1rem;
+  border: 2px solid #676767;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  display: block;
+  margin: auto 0;
 }

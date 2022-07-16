@@ -4,8 +4,8 @@ import React from "react";
 import "./Registration.css";
 const Registration = ({ soureName, label }) => {
   const handleSave = () => {
-    console.log('save')
-  }
+    console.log("save");
+  };
   return (
     <div className='registration'>
       <div className='register-content'>

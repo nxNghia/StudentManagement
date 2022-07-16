@@ -23,12 +23,11 @@ const StudentManager = () => {
         setStudents(res.data);
       })
       .catch((err) => console.log(err));
-  },[])
-  
+  }, []);
 
   return (
     <div className='student-manager'>
-      <div style={{width: '100%'}}>
+      <div style={{ width: "100%" }}>
         <div className='tools'>
           <Input />
           <MySelect source={data} placeholder='GPA' />
@@ -49,11 +48,15 @@ const StudentManager = () => {
         </div>
       </div>
       {selected && (
-        <div className="view-profile">
-          <div className="time" onClick={()=> {
-            setSelected(null)
-          }}>
-            <i className="fa fa-times" aria-hidden="true"></i>
+        <div className='view-profile'>
+          <div
+            className='time'
+            onClick={() => {
+              setSelected(null);
+            }}>
+            <i
+              className='fa fa-times'
+              aria-hidden='true'></i>
           </div>
           <Profile user={selected} />
         </div>

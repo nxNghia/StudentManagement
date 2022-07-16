@@ -1,11 +1,22 @@
-import React, {useEffect} from 'react'
-import Select from 'react-select'
-import './MySelect.css'
+/** @format */
 
-const MySelect = ({isMul, source, minHeight, placeholder}) => {
+import React, { useEffect } from "react";
+import Select from "react-select";
+import "./MySelect.css";
+
+const MySelect = ({
+  isMul,
+  source,
+  minHeight,
+  placeholder,
+}) => {
   return (
-    <Select isMulti={isMul} options={source} placeholder={placeholder}/>
-  )
-}
+    <Select
+      isMulti={isMul}
+      options={source}
+      placeholder={placeholder}
+    />
+  );
+};
 
-export default MySelect
+export default MySelect;

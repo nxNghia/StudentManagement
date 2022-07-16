@@ -7,9 +7,6 @@ const MODAL = ({ body, open, setClose }) => {
       <Modal open={open} onClose={setClose}>
         {body}
     </Modal>
-      {/* <ButtonAdd />
-      <ButtonClassList />
-      <ButtonAdd2 /> */}
     </>
   )
 }

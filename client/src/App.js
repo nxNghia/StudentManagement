@@ -2,17 +2,23 @@
 
 import Login from "./page/login/Login";
 import StudentScreen from "./page/studentScreen/StudentScreen";
-// import EditProfile from "./page/editProfile/EditProfile";
 import { useSelector } from "react-redux";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import "./App.css";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { API } from "./app/API";
-import {  useEffect } from "react";
+import { useEffect } from "react";
 import ManagerScreen from "./page/managerScreen/ManagerScreen";
 import Cookies from "universal-cookie";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "./actions/user.actions";
-import { loginStateSelector, userSelector } from "./selectors/user.selector";
+import {
+  loginStateSelector,
+  userSelector,
+} from "./selectors/user.selector";
 const cookie = new Cookies();
 function App() {
   const dispatch = useDispatch();
@@ -40,23 +46,29 @@ function App() {
     }
   }, [isLogin]);
   return (
-    <div className="App">
+    <div className='App'>
       {isLogin ? (
         <>
           <BrowserRouter>
             <Routes>
               <Route
-                path="/"
+                path='/'
                 element={
                   user && user.type === "student" ? (
-                    <Navigate to="student" />
+                    <Navigate to='student' />
                   ) : (
-                    <Navigate to="manager" />
+                    <Navigate to='manager' />
                   )
                 }
               />
-              <Route path="/student" element={<StudentScreen />} />
-              <Route path="/manager" element={<ManagerScreen />} />
+              <Route
+                path='/student'
+                element={<StudentScreen />}
+              />
+              <Route
+                path='/manager'
+                element={<ManagerScreen />}
+              />
             </Routes>
           </BrowserRouter>
         </>

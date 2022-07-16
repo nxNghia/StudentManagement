@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Input from "../../component/input/Input";
-import { useDispatch, } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../../actions/user.actions";
 import "./Login.css";
 import Cookie from "universal-cookie";

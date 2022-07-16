@@ -7,6 +7,7 @@ import "antd/dist/antd.min.css";
 import MODAL from "../MODAL/MODAL";
 import SubjectModal from "../modalcontent/SubjectModal";
 import Registration from "../modalcontent/Registration";
+import Input from "../input/Input";
 const data = [
   {
     id: "1",
@@ -107,15 +108,21 @@ const data = [
     class: 3,
   },
 ];
-const columnName = ['ID', '科目名', '学部', 'クレジット', 'クラス数']
+const columnName = [
+  "ID",
+  "科目名",
+  "学部",
+  "クレジット",
+  "クラス数",
+];
 const SubjectList = ({ canAdd }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isOpen2, setIsOpen2] = useState(false)
-  const [source, setSource] = useState(null)
+  const [isOpen2, setIsOpen2] = useState(false);
+  const [source, setSource] = useState(null);
   const handleOnclick = (index) => {
-    setIsOpen2(true)
-    setSource({...data[index]})
-  }
+    setIsOpen2(true);
+    setSource({ ...data[index] });
+  };
   return (
     <div className='classList'>
       <div
@@ -135,16 +142,36 @@ const SubjectList = ({ canAdd }) => {
             追加
           </button>
         )}
-        <input
-          type='text'
-          name=''
-          id=''
-          className='inputClassList'
-        />
+        <Input/>
       </div>
-      <List onClick={id => handleOnclick(id)} lists={data} columnName={columnName} special={[2]} ratio='5% auto 21%  18% 14%'/>
-      <MODAL body={<SubjectModal/>} open={isOpen} setClose={()=> {setIsOpen(false)}} />
-      {canAdd === false && <MODAL body={<Registration label='subject' soureName={source}/>} open={isOpen2} setClose={()=> {setIsOpen2(false)}} />}
+      <List
+        onClick={(id) => handleOnclick(id)}
+        lists={data}
+        columnName={columnName}
+        special={[2]}
+        ratio='5% auto 21%  18% 14%'
+      />
+      <MODAL
+        body={<SubjectModal />}
+        open={isOpen}
+        setClose={() => {
+          setIsOpen(false);
+        }}
+      />
+      {canAdd === false && (
+        <MODAL
+          body={
+            <Registration
+              label='subject'
+              soureName={source}
+            />
+          }
+          open={isOpen2}
+          setClose={() => {
+            setIsOpen2(false);
+          }}
+        />
+      )}
     </div>
   );
 };
