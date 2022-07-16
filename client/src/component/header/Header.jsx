@@ -5,17 +5,17 @@ import "./Header.css";
 import UserAvatar from "../../img/user.svg";
 import Logo from "../../img/Logo.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { logOut } from "../../features/authSlice";
+import { logout } from "../../actions/user.actions";
 import { userSelector } from "../../selectors/user.selector";
 import { useEffect } from "react";
+import { API } from "../../app/API";
+import Cookies from "universal-cookie";
+
+const cookie = new Cookies()
 const Header = ({ onLogOut }) => {
   const user = useSelector((state) => state.user.user);
   const userData = useSelector(userSelector);
 
-  useEffect(() => {
-    console.log('abc');
-    console.log(userData);
-  }, [userData]);
   const dispatch = useDispatch();
   return (
     <div className='header'>
@@ -34,8 +34,11 @@ const Header = ({ onLogOut }) => {
         <div
           className='avatar'
           onClick={() => {
-            dispatch(logOut());
-            onLogOut();
+            cookie.remove('user',{path: '/'})
+            API.post('/login/logout',{withCredential: true}).then((res)=> {
+              dispatch(logout());
+              onLogOut();
+            }).catch(err=> console.log(err))
           }}>
           <img src={UserAvatar} alt='' />
         </div>

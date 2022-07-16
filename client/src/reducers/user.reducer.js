@@ -14,6 +14,14 @@ export const userReducer = (state = initState, action) => {
                     isLogin: true
                 }
             }
+        case 'LOGOUT': 
+            {
+                return {
+                    ...state,
+                    user: {},
+                    isLogin: false
+                }
+            }
 
             default: return {...state};
     }

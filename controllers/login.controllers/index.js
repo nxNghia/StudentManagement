@@ -65,4 +65,9 @@ const LogIn = async (req, res) => {
   }
 };
 
-module.exports = { LogIn };
+const logOut = (req, res) => {
+  res.clearCookie('user')
+  res.send()
+}
+
+module.exports = { LogIn, logOut };
