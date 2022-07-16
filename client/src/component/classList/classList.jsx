@@ -1,82 +1,34 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./classList.css";
 import "antd/dist/antd.min.css";
 import MODAL from '../MODAL/MODAL'
 import ClassModal from '../modalcontent/ClassModal'
 import Registration from "../modalcontent/Registration";
-import List from '../List/List'
+import List from '../List/List';
 import Input from "../input/Input";
-const data = [
-  {
-    id: "1",
-    className: "John Brown",
-    manager: "Tagasida Nobuyuki",
-    numOfStudents: 24,
-    endDate: "2022/7/15",
-  },
-  {
-    id: "2",
-    className: "John Brown",
-    manager: "Tagasida Nobuyuki",
-    numOfStudents: 24,
-    endDate: "2022/7/15",
-  },
-  {
-    id: "3",
-    className: "John Brown",
-    manager: "Tagasida Nobuyuki",
-    numOfStudents: 24,
-    endDate: "2022/7/15",
-  },
-  {
-    id: "4",
-    className: "John Brown",
-    manager: "Tagasida Nobuyuki",
-    numOfStudents: 24,
-    endDate: "2022/7/15",
-  },
-  {
-    id: "1",
-    className: "John Brown",
-    manager: "Tagasida Nobuyuki",
-    numOfStudents: 24,
-    endDate: "2022/7/15",
-  },
-  {
-    id: "2",
-    className: "John Brown",
-    manager: "Tagasida Nobuyuki",
-    numOfStudents: 24,
-    endDate: "2022/7/15",
-  },
-  {
-    id: "3",
-    className: "John Brown",
-    manager: "Tagasida Nobuyuki",
-    numOfStudents: 24,
-    endDate: "2022/7/15",
-  },
-  {
-    id: "4",
-    className: "John Brown",
-    manager: "Tagasida Nobuyuki",
-    numOfStudents: 24,
-    endDate: "2022/7/15",
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { allClassesSelector } from "../../selectors/class.selector";
+import { getAllClasses } from "../../actions/class.action";
+
 const columnName = [
   'Id', 'クラス名', '担当者', '学生数', '終了日'
 ];
 
 const ClassList = ({canAdd}) => {
+  const dispatch = useDispatch();
+  const data = useSelector(allClassesSelector)
   const [isOpen, setIsOpen] = useState(false)
   const [isOpen2, setIsOpen2] = useState(false)
   const [source, setSource] = useState(null)
   const handleOnclick = (index) => {
     setIsOpen2(true)
     setSource({...data[index]})
-    console.log(source)
   }
+
+  useEffect(() => {
+    dispatch(getAllClasses());
+  }, []);
+
   return (
     <div className="classList">
       <div className="containerClassList" style={{justifyContent: canAdd ? 'space-between' : 'flex-end'}}>

@@ -13,7 +13,7 @@ import Cookies from "universal-cookie";
 
 const cookie = new Cookies();
 const Header = ({ onLogOut }) => {
-  const user = useSelector((state) => state.user.user);
+  // const user = useSelector((state) => state.user.user);
   const userData = useSelector(userSelector);
 
   const dispatch = useDispatch();

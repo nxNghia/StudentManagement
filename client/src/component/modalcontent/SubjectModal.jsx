@@ -4,12 +4,11 @@ import React from "react";
 import "./SubjectModal.css";
 import Input from "../input/Input";
 import MySelect from "../Select/MySelect";
+import { useSelector } from "react-redux";
+import { allFacultiesSelector } from "../../selectors/common.selector";
+
 const SubjectModal = () => {
-  const data = [
-    { value: 1, label: "A" },
-    { value: 2, label: "B" },
-    { value: 3, label: "C" },
-  ];
+  const data = useSelector(allFacultiesSelector).map(faculty => ({value: faculty.id, label: faculty.name}));
 
   const handleSave = () => {
     console.log("?");

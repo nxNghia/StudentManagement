@@ -6,12 +6,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import { userReducer } from './reducers/user.reducer';
+import reducers from './reducers';
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__|| compose
 
 const store = createStore(
-    userReducer,
+    reducers,
     composeEnhancer(
         applyMiddleware(thunk)
     )
