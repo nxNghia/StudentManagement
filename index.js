@@ -33,4 +33,4 @@ app.use("/student", studentRouter);
 app.use("/subject", subjectRouter);
 app.use("/class", classRouter);
 app.use("/login", loginRouter);
-app.use("/admin", adminRouter)
+app.use("/admin", adminRouter);

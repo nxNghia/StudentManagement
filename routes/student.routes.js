@@ -10,5 +10,6 @@ router.post("/add", studentController.add);
 router.get("/getClasses/:id", studentController.getAllClass);
 router.post("/update", studentController.update);
 router.post("/remove", studentController.remove);
+router.post("/evaluated", studentController.evaluation);
 
 module.exports = router;

@@ -2,6 +2,27 @@
 
 const Student = require("../../models/students.models");
 const bcrypt = require("bcrypt");
+
+const characterConvert = grade => {
+  if (grade >= 3.5) {
+    return 'A';
+  }
+
+  if (grade >= 3) {
+    return 'B';
+  }
+
+  if (grade >= 2) {
+    return 'C';
+  }
+
+  if (grade >= 1.5) {
+    return 'D';
+  }
+
+  return 'F';
+}
+
 const getAll = async (request, response) => {
   try {
     const filter = request.params.type
@@ -135,6 +156,25 @@ const remove = async (request, response) => {
   }
 };
 
+const evaluation = async (request, response) => {
+  try {
+    const { id, class_id, subject_id, grade } = request.body;
+
+    const characterGrade = characterConvert(grade);
+
+    const query = `UPDATE Student SET result = ${grade}, converttocharacter = '${characterGrade}' WHERE student_id = ${id} AND subject_id = ${subject_id} AND class_id = ${class_id}`;
+
+    const result = await Student.query(query);
+
+    response.status(200).send({ message: 'Update education result successfully', ...result });
+  } catch (err) {
+    response.status(400).send({
+      message: 'Failed to update education result',
+      ...err
+    });
+  }
+};
+
 module.exports = {
   getAll,
   getById,
@@ -142,4 +182,5 @@ module.exports = {
   update,
   remove,
   getAllClass,
+  evaluation
 };
