@@ -48,7 +48,6 @@ const getAllClass = async (request, response) => {
   try {
     const subject_id = request.params.id;
 
-
     if (request.cookies.user.type === 'admin') {
       const result = await Student.getAllClass(subject_id);
   
@@ -151,6 +150,7 @@ const add = async (request, response) => {
 
     response.status(200).send(result);
   } catch (err) {
+    console.log(err);
     response.status(400).send({ message: "Failed to add student", ...err });
   }
 };

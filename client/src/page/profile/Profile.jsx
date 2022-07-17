@@ -45,7 +45,6 @@ const Profile = ({ user }) => {
   const handleSave = () => {
     const cpa_float = parseFloat(editData.cpa).toFixed(1);
     if (!cpa_float) {
-      console.log("Invalid CPA format");
       setEditData(defaultData);
     } else {
       setEditData({ ...editData, cpa: cpa_float });

@@ -1,5 +1,6 @@
 const initState = {
-    adminAccounts: []
+    adminAccounts: [],
+    students: []
 };
 
 export const commonReducer = (state = initState, action) => {
@@ -15,6 +16,12 @@ export const commonReducer = (state = initState, action) => {
             return {
                 ...state,
                 adminAccounts: action.data
+            }
+
+        case 'GET_ALL_STUDENTS':
+            return {
+                ...state,
+                students: action.data
             }
 
         default: return {...state};

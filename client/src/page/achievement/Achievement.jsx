@@ -13,13 +13,14 @@ const Achievement = ({ canEdit=false, userData }) => {
   const classes = useSelector(registedClassesSelector);
 
   useEffect(() => {
-    dispatch(registedClasses(userData.id))
+    if (userData)
+      dispatch(registedClasses(userData.id))
   }, [userData]);
-
 
   return (
     <div className='achievement'>
       <h1>成績</h1>
+      {classes.length === 0 && <span>クラスがありません。</span>}
       {classes.map(c => (<ClassStudied data={c} name='' canEdit={canEdit} />))}
     </div>
   );
