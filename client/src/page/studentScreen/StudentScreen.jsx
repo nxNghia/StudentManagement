@@ -11,7 +11,6 @@ import { userSelector } from "../../selectors/user.selector";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 const StudentScreen = () => {
-  const student = useSelector((state) => state.user.user);
   const userData = useSelector(userSelector);
   const [tab, setTab] = useState(1);
   const studentTabs = [
