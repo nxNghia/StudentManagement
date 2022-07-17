@@ -21,7 +21,7 @@ const Login = () => {
       .then((res) => {
         const user = {
           ...res.data.user,
-          type: cookie.get("user").type,
+          role: cookie.get("user").type,
         };
         // setIsLogin(true)
         // dispatch(logIn(user));

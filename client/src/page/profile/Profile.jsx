@@ -1,11 +1,12 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { registedClasses } from "../../actions/user.actions";
 import Avatar from "../../img/user.svg";
 import "./Profile.css";
 import { API } from "../../app/API";
 import { update } from "../../actions/user.actions";
-import {useDispatch} from 'react-redux'
 const Profile = ({ user }) => {
   const defaultData = {
     id: user.id,
@@ -65,6 +66,11 @@ const Profile = ({ user }) => {
     setEditData(defaultData);
     setIsEdit(false);
   };
+
+  useEffect(() => {
+    dispatch(registedClasses(user.id));
+  }, [user]);
+
   return (
     <div>
       <div className='profile'>

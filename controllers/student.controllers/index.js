@@ -48,15 +48,18 @@ const getAllClass = async (request, response) => {
   try {
     const subject_id = request.params.id;
 
-    const result = await Student.getAllClass(subject_id);
+    console.log(request.cookies);
 
-    if (result.length === 0) {
-      response
-        .status(400)
-        .send({ message: "Student does not have classes", id: subject_id });
+    if (request.cookies.user.type === 'admin') {
+      const result = await Student.getAllClass(subject_id);
+  
+      response.status(200).send(result);
     } else {
+      const result = await Student.getAllClass(request.cookies.user.id);
+  
       response.status(200).send(result);
     }
+
   } catch (err) {
     response
       .status(400)
