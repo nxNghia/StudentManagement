@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { allSubjectsSelector } from "../../selectors/subject.selector";
 import { allAdminsSelector } from "../../selectors/common.selector";
 import { addClass } from "../../actions/class.action";
-const ClassModal = () => {
+const ClassModal = ({onClose}) => {
   const dispatch = useDispatch();
   const data = useSelector(allSubjectsSelector).map(subject => ({value: subject.id, label: subject.name}));
   const adminData = useSelector(allAdminsSelector).map(admin => ({value: admin.id, label: admin.name}));
@@ -17,6 +17,7 @@ const ClassModal = () => {
   
   const handleSave = () => {
     dispatch(addClass(newClass));
+    onClose();
   };
   
   return (
@@ -44,7 +45,7 @@ const ClassModal = () => {
         <button className='accept-add' onClick={handleSave}>
           保存
         </button>
-        <button className='deny-add' onClick={handleSave}>
+        <button className='deny-add' onClick={onClose}>
           キャンセル
         </button>
       </div>

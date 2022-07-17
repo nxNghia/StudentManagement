@@ -100,7 +100,7 @@ const SubjectList = ({ canAdd }) => {
         }}
       />
       <MODAL
-        body={<SubjectModal />}
+        body={<SubjectModal onClose={() => setIsOpen(false)} />}
         open={isOpen && canAdd}
         setClose={() => {
           setIsOpen(false);

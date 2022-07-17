@@ -136,7 +136,7 @@ const Profile = ({ user }) => {
                   }}
                 />
               ) : (
-                <span>{user.gender ? "男" : "女"}</span>
+                <span>{!user.gender ? "男" : "女"}</span>
               )}
             </div>
             {isEdit === false && (

@@ -64,7 +64,7 @@ const ClassList = ({ canAdd, canAssign=false }) => {
         <Input/>
       </div>
       <List onClick={id => handleOnclick(id)} lists={allClasses} columnName={columnName} special={[2]} ratio='5% auto 21%  18% 14%' labels={['id', 'name', 'teacher', 'students', 'end_date']}/>
-      <MODAL open={isOpen && canAdd} setClose={()=> {setIsOpen(false)}} body = {<ClassModal/>}/>
+      <MODAL open={isOpen && canAdd} setClose={()=> {setIsOpen(false)}} body = {<ClassModal onClose={() => setIsOpen(false)}/>}/>
       <MODAL open={isOpen2} setClose={()=> {setIsOpen2(false)}} body={<Registration onCancel={()=> setIsOpen2(false)} soureName={source} label="className"/>}/>
     </div>
   );

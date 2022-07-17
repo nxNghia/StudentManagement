@@ -22,6 +22,7 @@ const StudentModal = ({onClose}) => {
 
   const handleSave = () => {
     dispatch(addStudent(newStudent));
+    onClose();
   };
 
   return (

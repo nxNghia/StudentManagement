@@ -8,13 +8,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { allFacultiesSelector } from "../../selectors/common.selector";
 import { addSubject } from "../../actions/subject.actions";
 
-const SubjectModal = () => {
+const SubjectModal = ({onClose}) => {
   const dispatch = useDispatch();
   const data = useSelector(allFacultiesSelector).map(faculty => ({value: faculty.id, label: faculty.name}));
   const [newSubject, setNewSubject] = useState({classes: 0});
 
   const handleSave = () => {
     dispatch(addSubject(newSubject));
+    onClose();
   };
 
   return (
@@ -37,7 +38,7 @@ const SubjectModal = () => {
         <button className='accept-add' onClick={handleSave}>
           保存
         </button>
-        <button className='deny-add' onClick={handleSave}>
+        <button className='deny-add' onClick={onClose}>
           キャンセル
         </button>
       </div>
