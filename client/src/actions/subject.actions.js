@@ -16,7 +16,6 @@ export const getAllSubjects = () => {
     return dispatch => {
         API.get('/subject/get/id/desc')
         .then(response => {
-            console.log(response.data);
             dispatch({
                 type: 'GET_ALL_SUBJECTS',
                 data: response.data

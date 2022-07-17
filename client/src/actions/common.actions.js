@@ -13,7 +13,6 @@ export const getAllFaculties = () => {
 };
 
 export const getAllAdmin = () => {
-    console.log('abc');
     return dispatch => {
         API.get('/admin/get/id/desc')
         .then(response => {

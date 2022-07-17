@@ -14,7 +14,6 @@ const SubjectModal = () => {
   const [newSubject, setNewSubject] = useState({classes: 0});
 
   const handleSave = () => {
-    console.log(newSubject);
     dispatch(addSubject(newSubject));
   };
 

@@ -4,7 +4,6 @@ import React from "react";
 import "./Registration.css";
 const Registration = ({ soureName, label, onCancel }) => {
   const handleSave = () => {
-    console.log("save");
     onCancel();
   };
   return (

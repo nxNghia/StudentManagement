@@ -10,7 +10,6 @@ const getAll = async (request, response) => {
 
     response.status(200).send(result);
   } catch (err) {
-    console.log(err);
     response.status(400).send({ message: "Failed to get all admins", ...err });
   }
 };
@@ -46,7 +45,6 @@ const add = async (request, response) => {
 
     response.status(200).send(result);
   } catch (err) {
-    console.log(err);
     response.status(400).send({ message: "Failed to add admin", ...err });
   }
 };

@@ -29,7 +29,6 @@ const ClassList = ({ canAdd, canAssign=false }) => {
   }
 
   useEffect(() => {
-    console.log('get');
     dispatch(getAllClasses());
     dispatch(getAllAdmin());
     dispatch(getAllSubjects());
