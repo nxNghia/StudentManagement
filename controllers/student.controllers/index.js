@@ -1,6 +1,8 @@
 /** @format */
 
 const Student = require("../../models/students.models");
+const Class = require("../../models/class.models");
+
 const bcrypt = require("bcrypt");
 const getAll = async (request, response) => {
   try {
@@ -122,6 +124,10 @@ const CourseRegister = async (request, response) => {
         const message =
           "Successfully registered for the class";
         const result = await Student.classRegister(data);
+        const query = `UPDATE classes SET students = students + 1 WHERE id = ${data.class_id}`;
+
+        await Class.query(query);
+
         response.status(200).send(message);
       } else {
         data = {

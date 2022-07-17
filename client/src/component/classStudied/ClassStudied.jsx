@@ -4,8 +4,9 @@ import React, { useState } from "react";
 import Up from '../../img/up.svg';
 import Down from '../../img/down.svg';
 import './ClassStudied.css';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userSelector } from "../../selectors/user.selector";
+import { evaluatedStudent } from "../../actions/student.action";
 
 const convertCharacter = grade => {
     if (grade >= 3.5)
@@ -26,8 +27,8 @@ const convertCharacter = grade => {
     return 'F';
 }
 
-const ClassStudied = ({name, assess, lessons, canEdit=false, data}) => {
-    const userData = useSelector(userSelector);
+const ClassStudied = ({name, assess, lessons, canEdit=false, data, userData}) => {
+    const dispatch = useDispatch();
     const [isShowLesson, setIsShowLesson] = useState(false);
     const [onEdit, setOnEdit] = useState(false);
     const [grade, setGrade] = useState(undefined);
@@ -41,6 +42,15 @@ const ClassStudied = ({name, assess, lessons, canEdit=false, data}) => {
     }
 
     const onSave = () => {
+        const sendData = {
+            student_id: userData.id,
+            class_id: data.classid,
+            subject_id: data.id,
+            result: Number(grade),
+            converttocharacter: characterGrade
+        }
+
+        dispatch(evaluatedStudent(sendData));
         setOnEdit(false);
     }
 

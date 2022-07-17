@@ -39,9 +39,12 @@ const ClassList = ({ canAdd, canAssign=false }) => {
     setAllClasses(data.map((item)=> ({...item,end_date: item.end_date.slice(0,10) , teacher: getTeacher(item.teacher)})))
     dispatch(getAllAdmin());
     dispatch(getAllClasses());
-    dispatch(getAllAdmin());
     dispatch(getAllSubjects());
   }, []);
+
+  useEffect(() => {
+    setAllClasses(data);
+  }, [data]);
 
   return (
     <div className="classList">

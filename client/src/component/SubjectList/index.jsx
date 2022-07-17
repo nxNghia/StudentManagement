@@ -40,15 +40,13 @@ const SubjectList = ({ canAdd }) => {
     return faculty[0].name;
   };
   useEffect(() => {
-    setAllSubjects(
-      data.map((item) => ({
-        ...item,
-        faculty: getFaculty(item.faculty),
-      }))
-    );
     dispatch(getAllFaculties());
     dispatch(getAllSubjects());
   }, []);
+
+  useEffect(() => {
+    setAllSubjects(data);
+  }, [data]);
 
   return (
     <div className='classList'>

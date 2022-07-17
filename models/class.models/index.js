@@ -37,10 +37,17 @@ const remove = async (id) => {
     return result;
 }
 
+const query = async (query) => {
+    const result = await pool.query(query);
+
+    return result;
+}
+
 module.exports = {
     getAll,
     getById,
     add,
     update,
-    remove
+    remove,
+    query
 }

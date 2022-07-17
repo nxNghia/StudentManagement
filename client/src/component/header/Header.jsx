@@ -13,7 +13,6 @@ import Cookies from "universal-cookie";
 
 const cookie = new Cookies();
 const Header = ({ onLogOut }) => {
-  // const user = useSelector((state) => state.user.user);
   const userData = useSelector(userSelector);
 
   const dispatch = useDispatch();
@@ -25,7 +24,7 @@ const Header = ({ onLogOut }) => {
       <div className="user-info">
         <div className="info">
           {userData.name}
-          <span>{userData.student_id}</span>
+          <span>{userData.student_id || 'Admin'}</span>
         </div>
         <div
           className="avatar"

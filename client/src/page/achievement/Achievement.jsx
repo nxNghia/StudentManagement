@@ -21,7 +21,7 @@ const Achievement = ({ canEdit=false, userData }) => {
     <div className='achievement'>
       <h1>成績</h1>
       {classes.length === 0 && <span>クラスがありません。</span>}
-      {classes.map(c => (<ClassStudied data={c} name='' canEdit={canEdit} />))}
+      {classes.map(c => (<ClassStudied data={c} name='' canEdit={canEdit} userData={userData} />))}
     </div>
   );
 };

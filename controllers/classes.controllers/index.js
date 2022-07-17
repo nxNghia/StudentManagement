@@ -41,6 +41,10 @@ const add = async (request, response) => {
 
         const result = await Class.add(data);
 
+        const query = `UPDATE subject SET classes = classes + 1 where id = ${data.subject_id}`;
+
+        await Class.query(query);
+
         response.status(200).send(result);
     } catch (err) {
         console.log(err)

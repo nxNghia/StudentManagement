@@ -18,7 +18,7 @@ const getById = async (id) => {
 
 const getAllClass = async (id) => {
   const result = await pool.query(
-    `SELECT Subject.id , Subject.name, Classes.name ,Classes.id ,educationresult.result,educationresult.converttocharacter
+    `SELECT Subject.id , Subject.name, Classes.name as className ,Classes.id as classId ,educationresult.result,educationresult.converttocharacter
     FROM Subject INNER JOIN Classes
     ON Classes.subject_id = subject.id
     INNER JOIN educationresult
@@ -59,6 +59,8 @@ const classRegister = async (data) => {
 };
 
 const Mark = async (data) => {
+  console.log(`UPDATE educationResult SET result = ${data.result}, converttocharacter = '${data.converttocharacter}'
+  WHERE student_id= ${data.student_id} AND subject_id=${data.subject_id} AND class_id=${data.class_id} `);
   const result =
     await pool.query(`UPDATE educationResult SET result = ${data.result}, converttocharacter = '${data.converttocharacter}'
     WHERE student_id= ${data.student_id} AND subject_id=${data.subject_id} AND class_id=${data.class_id} `);
