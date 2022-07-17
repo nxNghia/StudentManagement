@@ -3,6 +3,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const cookieParser = require('cookie-parser')
 const studentRouter = require("./routes/student.routes");
 const subjectRouter = require("./routes/subject.routes");
@@ -28,6 +29,7 @@ app.use(cors({
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cookieParser());
+// app.use(express.static(path.join(__dirname + '/client/build')));
 app.listen(port, () => console.log(`Running on port ${port}`));
 
 app.use("/student", studentRouter);
@@ -36,3 +38,7 @@ app.use("/class", classRouter);
 app.use("/login", loginRouter);
 app.use("/admin", adminRouter);
 app.use("/common", commonRouter);
+
+// app.get('*', (request, response) => {
+//     response.sendFile(path.join(__dirname + '/client/build/index.html'));
+// })
