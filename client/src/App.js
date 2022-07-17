@@ -24,7 +24,6 @@ const cookie = new Cookies();
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
-  // const [isLogin, setIsLogin] = useState(false)
   const isLogin = useSelector(loginStateSelector);
   
   useEffect(() => {
@@ -32,12 +31,14 @@ function App() {
     dispatch(getAllFaculties());
     if (auth) {
       if (isLogin === false) {
-        API.get(`/student/get/${auth.id}`)
+        const end_point = auth.type === 'student' ? `/student/get/${auth.id}` : `/admin/get/${auth.id}`
+        API.get(end_point)
           .then((res) => {
             const data = res.data[0];
             dispatch(
               login({
                 ...data,
+                role: auth.type,
                 type: "LOGIN",
               })
             );
@@ -57,7 +58,7 @@ function App() {
               <Route
                 path='/'
                 element={
-                  user && user.type === "student" ? (
+                  user && user.role === "student" ? (
                     <Navigate to='student' />
                   ) : (
                     <Navigate to='manager' />
