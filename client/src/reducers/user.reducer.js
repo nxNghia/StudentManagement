@@ -24,6 +24,13 @@ export const userReducer = (state = initState, action) => {
         isLogin: false,
       };
     }
+    case 'UPDATE': {
+      return {
+        ...state,
+        user: action.data,
+        isLogin: true,
+      }
+    }
 
     case "GET_REGISTER": {
       return {
