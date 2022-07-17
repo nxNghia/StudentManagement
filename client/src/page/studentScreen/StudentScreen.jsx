@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Tabs from "../../component/Tabs/Tabs";
 import Profile from "../profile/Profile";
 import SubjectList from "../../component/SubjectList/index";
@@ -20,6 +20,7 @@ const StudentScreen = () => {
     "成績",
   ];
   const navigate = useNavigate();
+
   return (
     <div>
       <Header

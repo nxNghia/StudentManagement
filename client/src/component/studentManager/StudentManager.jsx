@@ -10,6 +10,7 @@ import ClassStudied from "../../component/classStudied/ClassStudied";
 import { Lessons } from "../../data/lessons";
 import "./StudentManager.css";
 import Profile from "../../page/profile/Profile";
+import Achievement from "../../page/achievement/Achievement";
 const StudentManager = () => {
   const data = [
     { value: 1, label: "1" },
@@ -62,9 +63,7 @@ const StudentManager = () => {
           </div>
           <Profile user={selected} />
           <h2>成績</h2>
-          <ClassStudied name='IT日本語 3' canEdit/>
-          <ClassStudied name='IT日本語 1' assess='4.0 (A+)' lessons={Lessons} canEdit/>
-          <ClassStudied name='IT日本語 2' assess='3.5 (A)' canEdit/>
+          <Achievement canEdit userData={selected} />
         </div>
       )}
     </div>
