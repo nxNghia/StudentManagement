@@ -6,6 +6,8 @@ import Input from "../input/Input";
 import StudentCard from "../studentCard/StudentCard";
 import Filter from "../../img/filter.svg";
 import { API } from "../../app/API";
+import ClassStudied from "../../component/classStudied/ClassStudied";
+import { Lessons } from "../../data/lessons";
 import "./StudentManager.css";
 import Profile from "../../page/profile/Profile";
 const StudentManager = () => {
@@ -59,6 +61,10 @@ const StudentManager = () => {
               aria-hidden='true'></i>
           </div>
           <Profile user={selected} />
+          <h2>成績</h2>
+          <ClassStudied name='IT日本語 3' canEdit/>
+          <ClassStudied name='IT日本語 1' assess='4.0 (A+)' lessons={Lessons} canEdit/>
+          <ClassStudied name='IT日本語 2' assess='3.5 (A)' canEdit/>
         </div>
       )}
     </div>

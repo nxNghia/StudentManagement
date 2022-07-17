@@ -9,12 +9,14 @@ const MySelect = ({
   source,
   minHeight,
   placeholder,
+  onChange
 }) => {
   return (
     <Select
       isMulti={isMul}
       options={source}
       placeholder={placeholder}
+      onChange={onChange}
     />
   );
 };

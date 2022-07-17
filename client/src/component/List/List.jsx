@@ -36,29 +36,6 @@ const List = ({
             </div>
           );
         })}
-      {lists.map((item, index) => {
-        return (
-          <div
-            onClick={() => onClick(index)}
-            key={index}
-            className='list-row item'
-            style={{ gridTemplateColumns: ratio }}>
-            {labels.map((label, index) => {
-              return (
-                <div
-                  key={index}
-                  className={
-                    special.includes(index)
-                      ? "special-font"
-                      : ""
-                  }>
-                  {item[label]}
-                </div>
-              );
-            })}
-          </div>
-        );
-      })}
     </div>
   );
 };

@@ -2,9 +2,10 @@
 
 import React from "react";
 import "./Registration.css";
-const Registration = ({ soureName, label }) => {
+const Registration = ({ soureName, label, onCancel }) => {
   const handleSave = () => {
     console.log("save");
+    onCancel();
   };
   return (
     <div className='registration'>
@@ -15,7 +16,7 @@ const Registration = ({ soureName, label }) => {
         <button className='accept-add' onClick={handleSave}>
           保存
         </button>
-        <button className='deny-add' onClick={handleSave}>
+        <button className='deny-add' onClick={onCancel}>
           キャンセル
         </button>
       </div>

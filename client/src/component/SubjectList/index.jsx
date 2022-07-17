@@ -12,16 +12,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { allSubjectsSelector } from "../../selectors/subject.selector";
 import { getAllSubjects } from "../../actions/subject.actions";
 
-const columnName = ['ID', '科目名', '学部', 'クレジット', 'クラス数']
-const SubjectList = ({ canAdd }) => {
+const columnName = ['ID', '科目名', '学部', 'クラス数', 'クレジット']
+const SubjectList = ({ canAdd, canAssign=false }) => {
   const dispatch = useDispatch();
   const data = useSelector(allSubjectsSelector)
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const [source, setSource] = useState(null);
   const handleOnclick = (index) => {
-    setIsOpen2(true)
-    setSource({...data[index]})
+    setSource({...data[index]});
+    setIsOpen2(true);
   }
 
   useEffect(() => {
@@ -57,26 +57,25 @@ const SubjectList = ({ canAdd }) => {
         ratio='5% auto 21%  18% 14%'
       />
       <MODAL
+        body={
+          <Registration
+            label='subject'
+            soureName={source}
+            onCancel={() => setIsOpen2(false)}
+          />
+        }
+        open={isOpen2 && canAssign}
+        setClose={() => {
+          setIsOpen2(false);
+        }}
+      />
+      <MODAL
         body={<SubjectModal />}
-        open={isOpen}
+        open={isOpen && canAdd}
         setClose={() => {
           setIsOpen(false);
         }}
       />
-      {canAdd === false && (
-        <MODAL
-          body={
-            <Registration
-              label='subject'
-              soureName={source}
-            />
-          }
-          open={isOpen2}
-          setClose={() => {
-            setIsOpen2(false);
-          }}
-        />
-      )}
     </div>
   );
 };

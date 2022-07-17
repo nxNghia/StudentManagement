@@ -11,6 +11,11 @@ export const classReducer = (state = initState, action) => {
                 classes: action.data
             }
 
+        case 'ADD_CLASS':
+            return {
+                ...state
+            }
+
         default: return {...state};
     }
 }

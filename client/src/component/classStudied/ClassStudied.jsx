@@ -3,7 +3,10 @@
 import React, { useState } from "react";
 import Up from '../../img/up.svg';
 import Down from '../../img/down.svg';
-import './ClassStudied.css'
+import './ClassStudied.css';
+import { useSelector } from "react-redux";
+import { userSelector } from "../../selectors/user.selector";
+
 const convertCharacter = grade => {
     if (grade >= 3.5)
         return 'A';
@@ -23,7 +26,8 @@ const convertCharacter = grade => {
     return 'F';
 }
 
-const ClassStudied = ({name, assess, lessons}) => {
+const ClassStudied = ({name, assess, lessons, canEdit=false}) => {
+    const userData = useSelector(userSelector);
     const [isShowLesson, setIsShowLesson] = useState(false);
     const [onEdit, setOnEdit] = useState(false);
     const [grade, setGrade] = useState(undefined);
@@ -48,7 +52,13 @@ const ClassStudied = ({name, assess, lessons}) => {
         <div className='studied-class'>
             <div className="class-info">
                 <div>{name}</div>
-                <div>{!assess ? <input type='submit' value='成績編集' onClick={editToggle} /> : assess}</div>
+                {
+                    canEdit ? (
+                        <div>{!assess ? <input type='submit' value='成績編集' onClick={editToggle} /> : assess}</div>
+                    ) : (
+                        assess ? assess : 'なし'
+                    )
+                }
                 <div className='down' onClick={()=> {
                     if(lessons)
                         setIsShowLesson(!isShowLesson)
