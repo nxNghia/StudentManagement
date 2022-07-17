@@ -7,8 +7,7 @@ export const subjectReducer = (state = initState, action) => {
     {
         case 'ADD_SUBJECT':
             return {
-                ...state,
-                subjects: [...state.subjects, action.data]
+                ...state
             }
 
         case 'GET_ALL_SUBJECTS':

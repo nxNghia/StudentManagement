@@ -9,14 +9,17 @@ import Input from "../input/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { allClassesSelector } from "../../selectors/class.selector";
 import { getAllClasses } from "../../actions/class.action";
+import { getAllAdmin } from "../../actions/common.actions";
+import { allAdminsSelector } from "../../selectors/common.selector";
+import { getAllSubjects } from "../../actions/subject.actions";
 
 const columnName = [
   'Id', 'クラス名', '担当者', '学生数', '終了日'
 ];
 
-const ClassList = ({canAdd}) => {
+const ClassList = ({ canAdd, canAssign=false }) => {
   const dispatch = useDispatch();
-  const data = useSelector(allClassesSelector)
+  const data = useSelector(allClassesSelector);
   const [isOpen, setIsOpen] = useState(false)
   const [isOpen2, setIsOpen2] = useState(false)
   const [source, setSource] = useState(null)
@@ -27,6 +30,8 @@ const ClassList = ({canAdd}) => {
 
   useEffect(() => {
     dispatch(getAllClasses());
+    dispatch(getAllAdmin());
+    dispatch(getAllSubjects());
   }, []);
 
   return (
@@ -36,8 +41,8 @@ const ClassList = ({canAdd}) => {
         <Input/>
       </div>
       <List onClick={id => handleOnclick(id)} lists={data} columnName={columnName} special={[2]} ratio='5% auto 21%  18% 14%'/>
-      <MODAL open={isOpen} setClose={()=> {setIsOpen(false)}} body = {<ClassModal/>}/>
-      {canAdd === false && <MODAL open={isOpen2} setClose={()=> {setIsOpen2(false)}} body={<Registration soureName={source} label="className"/>}/>}
+      <MODAL open={isOpen && canAdd} setClose={()=> {setIsOpen(false)}} body = {<ClassModal/>}/>
+      <MODAL open={isOpen2 && canAssign} setClose={()=> {setIsOpen2(false)}} body={<Registration soureName={source} label="className"/>}/>
     </div>
   );
 };

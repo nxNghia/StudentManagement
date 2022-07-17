@@ -11,3 +11,13 @@ export const getAllClasses = () => {
         });
     };
 };
+
+export const addClass = (data) => {
+    return dispatch => {
+        API.post('/class/add', data)
+        .then(() => {
+            dispatch({type: 'ADD_CLASS'});
+            dispatch(getAllClasses());
+        });
+    }
+}

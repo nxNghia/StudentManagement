@@ -34,7 +34,9 @@ const add = async (request, response) => {
             name: request.body.name,
             teacher: request.body.teacher,
             students: request.body.students,
-            end_date: request.body.end_date
+            end_date: request.body.end_date,
+            subject_id: request.body.subject_id,
+            faculty_id: request.body.faculty_id
         };
 
         const result = await Class.add(data);

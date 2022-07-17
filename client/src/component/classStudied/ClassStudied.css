@@ -70,6 +70,8 @@
     background-color: #676767;
     color: #ffffff;
     cursor: pointer !important;
+    border-radius: 20px;
+    border: none;
 }
 
 .class-info input[type='submit']:hover {
@@ -89,6 +91,7 @@
 .evaluation > input {
     width: 100px;
     text-align: center;
+    border: 1px solid #3d3d3d;
 }
 
 .evaluation > button {

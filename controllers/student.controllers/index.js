@@ -15,7 +15,6 @@ const getAll = async (request, response) => {
 
     response.status(200).send(result);
   } catch (err) {
-    console.log(err);
     response.status(400).send({
       message: "Failed to get all students",
       ...err,
@@ -144,7 +143,6 @@ const add = async (request, response) => {
       scholarship: request.body.scholarship,
       date: request.body.date,
     };
-    console.log(data);
     data.password = await bcrypt.hash(data.password, salt);
     const result = await Student.add(data);
 

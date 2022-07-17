@@ -13,8 +13,8 @@ const getById = async (id) => {
 }
 
 const add = async (data) => {
-    const result = await pool.query(`INSERT INTO Classes (name, teacher, students, end_date) 
-        VALUES ('${data.name}', ${data.teacher}, ${data.students}, '${data.end_date}')`);
+    const result = await pool.query(`INSERT INTO Classes (name, teacher, students, end_date, subject_id, faculty_id) 
+        VALUES ('${data.name}', ${data.teacher}, ${data.students}, '${data.end_date}', ${data.subject_id}, ${data.faculty_id})`);
 
     return result;
 }

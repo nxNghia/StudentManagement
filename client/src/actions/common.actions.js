@@ -11,3 +11,15 @@ export const getAllFaculties = () => {
         });
     };
 };
+
+export const getAllAdmin = () => {
+    return dispatch => {
+        API.get('/admin/get/id/desc')
+        .then(response => {
+            dispatch({
+                type: 'GET_ALL_ADMIN',
+                data: response.data
+            });
+        });
+    };
+};

@@ -29,7 +29,6 @@ const getAllClass = async (id) => {
 };
 
 const subjectRegister = async (data) => {
-  console.log(data);
   const result =
     await pool.query(`INSERT INTO educationResult (student_id,subject_id) 
         VALUES (${data.student_id}, ${data.subject_id})`);
