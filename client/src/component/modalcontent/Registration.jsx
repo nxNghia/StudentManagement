@@ -40,7 +40,7 @@ const Registration = ({ soureName, onCancel, type }) => {
   return (
     <div className='registration'>
       <div className='register-content'>
-        {type === "subject" ? soureName.name : "Lop"}
+        {soureName.name}
         コースに登録してもよろしいですか？
       </div>
       <div className='btn-container'>
