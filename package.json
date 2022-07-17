@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./index.js",
-    "client": "cd client && npm start"
+    "client": "cd client && npm start",
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -17,7 +19,6 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "mysql": "^2.18.1",
     "path": "^0.12.7",
     "pg": "^8.7.3"
   },
