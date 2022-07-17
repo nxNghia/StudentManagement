@@ -27,8 +27,17 @@ const getAllClass = async (id) => {
   );
   return result.rows;
 };
+const getAllClassAvailable = async (id) => {
+  const result = await pool.query(
+    `SElect * from classes where id NOT IN (SELECT classes.id 
+    FROM public.educationresult INNER JOIN public.classes  ON  public.educationresult.class_id =public.classes.id
+    where educationresult.student_id = ${id})`
+  );
+  return result.rows;
+};
 
 const subjectRegister = async (data) => {
+ 
   const result =
     await pool.query(`INSERT INTO educationResult (student_id,subject_id) 
         VALUES (${data.student_id}, ${data.subject_id})`);
@@ -37,12 +46,25 @@ const subjectRegister = async (data) => {
 };
 
 const classRegister = async (data) => {
+ 
   const result =
     await pool.query(`UPDATE educationResult SET class_id=${data.class_id}
     WHERE student_id= ${data.student_id} AND subject_id=${data.subject_id} 
     AND class_id IS NULL AND result IS NULL AND converttocharacter IS NULL`);
-
+    if (result.rowCount === 0){
+      await pool.query(`INSERT INTO educationResult (student_id,class_id,subject_id)VALUES (${data.student_id},${data.class_id},${data.subject_id})`);
+    }
   return result;
+  
+};
+
+const Mark = async (data) => {
+  const result =
+    await pool.query(`UPDATE educationResult SET result = ${data.result}, converttocharacter = '${data.converttocharacter}'
+    WHERE student_id= ${data.student_id} AND subject_id=${data.subject_id} AND class_id=${data.class_id} `);
+   
+  return result;
+  
 };
 
 const cancelSubjectRegister = async (data) => {
@@ -105,8 +127,10 @@ module.exports = {
   remove,
   query,
   getAllClass,
+  getAllClassAvailable,
   subjectRegister,
   classRegister,
   cancelSubjectRegister,
   cancelClassRegister,
+  Mark,
 };

@@ -10,6 +10,8 @@ router.post("/courseRegister", studentController.CourseRegister);
 router.post("/cancelCourseRegister", studentController.cancelCourseRegister);
 router.post("/add", studentController.add);
 router.get("/getClasses/:id", studentController.getAllClass);
+router.get("/getClassesAvailable/:id", studentController.getAllClassAvailable);
+router.post("/updateMark", studentController.Mark);
 router.post("/update", studentController.update);
 router.post("/remove", studentController.remove);
 

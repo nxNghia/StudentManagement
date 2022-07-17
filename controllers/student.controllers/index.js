@@ -64,6 +64,47 @@ const getAllClass = async (request, response) => {
       .send({ message: "Failed to get classes by id", ...err });
   }
 };
+
+const getAllClassAvailable = async (request, response) => {
+  try {
+    const subject_id = request.params.id;
+
+    const result = await Student.getAllClassAvailable(subject_id);
+
+    if (result.length === 0) {
+      response
+        .status(400)
+        .send({ message: "Student does not have classes", id: subject_id });
+    } else {
+      response.status(200).send(result);
+    }
+  } catch (err) {
+    response
+      .status(400)
+      .send({ message: "Failed to get classes by id", ...err });
+  }
+};
+
+const Mark = async (request, response) => {
+  try {
+    const data = {
+      student_id: request.body.student_id,
+      class_id: request.body.class_id,
+      subject_id: request.body.subject_id,
+      result : request.body.result,
+      converttocharacter :request.body.converttocharacter,
+    };
+    console.log(data)
+    const result = await Student.Mark(data);  
+    response.status(200).send(result);
+  } catch (err) {
+    console.log(err)
+    response
+      .status(400)
+      .send({ message: "Failed to get update mark", ...err });
+  }
+};
+
 const CourseRegister = async (request, response) => {
   try {
     if (request.body.subject_id) {
@@ -209,6 +250,8 @@ module.exports = {
   update,
   remove,
   getAllClass,
+  getAllClassAvailable,
   CourseRegister,
   cancelCourseRegister,
+  Mark,
 };
