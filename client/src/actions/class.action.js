@@ -1,8 +1,9 @@
+import axios from "axios";
 import { API } from "../app/API"
 
 export const getAllClasses = () => {
     return dispatch => {
-        API.get('/class/get/id/desc')
+        axios.get('/class/get/id/desc')
         .then(response => {
             dispatch({
                 type: 'GET_ALL_CLASSES',
@@ -14,7 +15,7 @@ export const getAllClasses = () => {
 
 export const addClass = (data) => {
     return dispatch => {
-        API.post('/class/add', data)
+        axios.post('/class/add', data)
         .then(() => {
             dispatch({type: 'ADD_CLASS'});
             dispatch(getAllClasses());
@@ -24,7 +25,7 @@ export const addClass = (data) => {
 
 export const getAllAvailableClasses = (id) => {
     return dispatch => {
-        API.get(`/student/getClassesAvailable/${id}`)
+        axios.get(`/student/getClassesAvailable/${id}`)
         .then(response => {
             dispatch({
                 type: 'GET_ALL_CLASSES',

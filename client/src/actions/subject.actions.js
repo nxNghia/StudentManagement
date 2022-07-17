@@ -1,8 +1,9 @@
+import axios from "axios";
 import { API } from "../app/API"
 
 export const addSubject = (data) => {
     return dispatch => {
-        API.post('/subject/add', data)
+        axios.post('/subject/add', data)
         .then(() => {
             dispatch({
                 type: 'ADD_SUBJECT'
@@ -14,7 +15,7 @@ export const addSubject = (data) => {
 
 export const getAllSubjects = () => {
     return dispatch => {
-        API.get('/subject/get/id/desc')
+        axios.get('/subject/get/id/desc')
         .then(response => {
             dispatch({
                 type: 'GET_ALL_SUBJECTS',

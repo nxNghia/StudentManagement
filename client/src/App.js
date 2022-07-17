@@ -21,6 +21,7 @@ import {
 } from "./selectors/user.selector";
 import { getAllFaculties } from "./actions/common.actions";
 import { getAllStudents } from "./actions/student.action";
+import axios from "axios";
 const cookie = new Cookies();
 function App() {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ function App() {
     if (auth) {
       if (isLogin === false) {
         const end_point = auth.type === 'student' ? `/student/get/${auth.id}` : `/admin/get/${auth.id}`
-        API.get(end_point)
+        axios.get(end_point)
           .then((res) => {
             const data = res.data[0];
             dispatch(

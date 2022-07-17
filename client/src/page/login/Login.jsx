@@ -7,6 +7,7 @@ import { login } from "../../actions/user.actions";
 import "./Login.css";
 import Cookie from "universal-cookie";
 import { API } from "../../app/API";
+import axios from "axios";
 const cookie = new Cookie();
 const Login = () => {
   const [data, setData] = useState({
@@ -15,7 +16,7 @@ const Login = () => {
   });
   const dispatch = useDispatch();
   const handleLogIn = async () => {
-    await API.post("/login", data, {
+    await axios.post("/login", data, {
       withCredentials: true,
     })
       .then((res) => {

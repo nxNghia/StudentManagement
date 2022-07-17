@@ -17,6 +17,7 @@ import { getAllStudents, removeStudent } from "../../actions/student.action";
 import { allStudentsSelector } from "../../selectors/student.selector";
 import MODAL from '../MODAL/MODAL'
 import StudentModal from "../modalcontent/StudentModal";
+import axios from "axios";
 
 const StudentManager = ({canRemove=false}) => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const StudentManager = ({canRemove=false}) => {
   const [handledList, setHandledList] = useState(studentsList);
 
   useEffect(() => {
-    API.get(`/student/get/${type}/${order}`)
+    axios.get(`/student/get/${type}/${order}`)
       .then((res) => {
         setStudents(res.data);
       })

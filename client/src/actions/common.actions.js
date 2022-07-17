@@ -1,8 +1,9 @@
+import axios from "axios";
 import { API } from "../app/API"
 
 export const getAllFaculties = () => {
     return dispatch => {
-        API.get('/common/getAllFaculties')
+        axios.get('/common/getAllFaculties')
         .then(response => {
             dispatch({
                 type: 'GET_ALL_FACULTIES',
@@ -14,7 +15,7 @@ export const getAllFaculties = () => {
 
 export const getAllAdmin = () => {
     return dispatch => {
-        API.get('/admin/get/id/desc')
+        axios.get('/admin/get/id/desc')
         .then(response => {
             dispatch({
                 type: 'GET_ALL_ADMIN',

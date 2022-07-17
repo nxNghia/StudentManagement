@@ -5,6 +5,7 @@ import "./Registration.css";
 import { API } from "../../app/API";
 import { useSelector } from "react-redux";
 import { userSelector } from "../../selectors/user.selector";
+import axios from "axios";
 const Registration = ({ soureName, onCancel, type }) => {
   const user = useSelector(userSelector);
   const handleSave = () => {
@@ -14,7 +15,7 @@ const Registration = ({ soureName, onCancel, type }) => {
         subject_id: soureName.id,
         class_id: null,
       });
-      API.post("/student/courseRegister", {
+      axios.post("/student/courseRegister", {
         student_id: user.id,
         subject_id: soureName.id,
         class_id: null,
@@ -24,7 +25,7 @@ const Registration = ({ soureName, onCancel, type }) => {
         })
         .catch((err) => console.log(err));
     } else {
-      API.post("/student/courseRegister", {
+      axios.post("/student/courseRegister", {
         student_id: user.id,
         subject_id: soureName.subject_id,
         class_id: soureName.id,

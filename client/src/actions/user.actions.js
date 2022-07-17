@@ -1,3 +1,4 @@
+import axios from "axios";
 import { API } from "../app/API";
 
 export const login = (data) => {
@@ -15,7 +16,7 @@ export const logout = () => {
 
 export const registedClasses = (id) => {
     return dispatch => {
-        API.get(`/student/getClasses/${id}`, {withCredentials: true})
+        axios.get(`/student/getClasses/${id}`, {withCredentials: true})
         .then (response => {
             dispatch({
                 type: 'GET_REGISTER',
@@ -27,9 +28,9 @@ export const registedClasses = (id) => {
 
 export const update = (data) => {
     return dispatch => {
-        API.post("/student/update", data)
+        axios.post("/student/update", data)
         .then(() => {
-          API.get(`/student/get/${data.id}`)
+            axios.get(`/student/get/${data.id}`)
             .then((res) => {
               dispatch({
                 type: 'UPDATE',
