@@ -21,6 +21,13 @@ export const userReducer = (state = initState, action) => {
         isLogin: false,
       };
     }
+    case 'UPDATE': {
+      return {
+        ...state,
+        user: action.data,
+        isLogin: true,
+      }
+    }
 
     default:
       return { ...state };

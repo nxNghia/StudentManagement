@@ -3,9 +3,11 @@
 import React, { useState } from "react";
 import Avatar from "../../img/user.svg";
 import "./Profile.css";
+import { API } from "../../app/API";
+import { update } from "../../actions/user.actions";
+import {useDispatch} from 'react-redux'
 const Profile = ({ user }) => {
-  const [isEdit, setIsEdit] = useState(false);
-  const [editData, setEditData] = useState({
+  const defaultData = {
     id: user.id,
     name: user.name,
     password: "",
@@ -15,7 +17,10 @@ const Profile = ({ user }) => {
     cpa: user.cpa,
     gender: user.gender,
     student_id: user.student_id,
-  });
+  };
+  const dispatch = useDispatch()
+  const [isEdit, setIsEdit] = useState(false);
+  const [editData, setEditData] = useState(defaultData);
   const handleEdit = () => {
     setIsEdit(true);
   };
@@ -38,9 +43,26 @@ const Profile = ({ user }) => {
     setEditData({ ...editData, cpa: e.target.value });
   };
   const handleSave = () => {
+    const cpa_float = parseFloat(editData.cpa).toFixed(1);
+    if (!cpa_float) {
+      console.log("Invalid CPA format");
+      setEditData(defaultData);
+    } else {
+      setEditData({ ...editData, cpa: cpa_float });
+      API.post("/student/update", editData)
+        .then(() => {
+          API.get(`/student/get/${user.id}`)
+            .then((res) => {
+              dispatch(update(res.data[0]))
+            })
+            .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
+    }
     setIsEdit(false);
   };
   const handleCancel = () => {
+    setEditData(defaultData);
     setIsEdit(false);
   };
   return (
