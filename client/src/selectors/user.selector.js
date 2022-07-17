@@ -5,7 +5,6 @@ import { createSelector } from "reselect";
 const getUser = state => state.userReducer.user;
 const getLoginState = state => state.userReducer.isLogin;
 const getRegistedClasses = state => {
-  console.log(state.userReducer.registedClasses);
   return state.userReducer.registedClasses;
 };
 

@@ -29,8 +29,10 @@ const ClassList = ({ canAdd, canAssign=false }) => {
   } 
   const [source, setSource] = useState(null)
   const handleOnclick = (index) => {
-    setIsOpen2(true)
-    setSource({...allClasses[index]})
+    if( canAdd === false) {
+      setIsOpen2(true)
+      setSource({...allClasses[index]})
+    }
   }
 
   useEffect(() => {
@@ -49,7 +51,7 @@ const ClassList = ({ canAdd, canAssign=false }) => {
       </div>
       <List onClick={id => handleOnclick(id)} lists={allClasses} columnName={columnName} special={[2]} ratio='5% auto 21%  18% 14%' labels={['id', 'name', 'teacher', 'students', 'end_date']}/>
       <MODAL open={isOpen && canAdd} setClose={()=> {setIsOpen(false)}} body = {<ClassModal/>}/>
-      <MODAL open={isOpen2 && canAssign} setClose={()=> {setIsOpen2(false)}} body={<Registration soureName={source} label="className"/>}/>
+      <MODAL open={isOpen2} setClose={()=> {setIsOpen2(false)}} body={<Registration onCancel={()=> setIsOpen2(false)} soureName={source} label="className"/>}/>
     </div>
   );
 };

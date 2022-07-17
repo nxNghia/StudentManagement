@@ -1,7 +1,6 @@
 import { API } from "../app/API";
 
 export const login = (data) => {
-    console.log(data);
     return {
         type: 'LOGIN',
         data

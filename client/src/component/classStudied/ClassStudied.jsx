@@ -26,7 +26,7 @@ const convertCharacter = grade => {
     return 'F';
 }
 
-const ClassStudied = ({name, assess, lessons, canEdit=false}) => {
+const ClassStudied = ({name, assess, lessons, canEdit=false, data}) => {
     const userData = useSelector(userSelector);
     const [isShowLesson, setIsShowLesson] = useState(false);
     const [onEdit, setOnEdit] = useState(false);
@@ -51,12 +51,12 @@ const ClassStudied = ({name, assess, lessons, canEdit=false}) => {
     return (
         <div className='studied-class'>
             <div className="class-info">
-                <div>{name}</div>
+                <div>{data.name}</div>
                 {
                     canEdit ? (
-                        <div>{!assess ? <input type='submit' value='成績編集' onClick={editToggle} /> : assess}</div>
+                        <div>{!data.result ? <input type='submit' value='成績編集' onClick={editToggle} /> : data.result}</div>
                     ) : (
-                        assess ? assess : 'なし'
+                        data.result ? data.result : 'なし'
                     )
                 }
                 <div className='down' onClick={()=> {

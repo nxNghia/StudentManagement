@@ -36,7 +36,7 @@ const StudentScreen = () => {
       {tab === 1 && <Profile user={userData} />}
       {tab === 2 && <SubjectList canAdd={false} />}
       {tab === 3 && <ClassList canAdd={false} />}
-      {tab === 4 && <Achievement />}
+      {tab === 4 && <Achievement userData={userData}/>}
     </div>
   );
 };

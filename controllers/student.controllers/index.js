@@ -48,7 +48,6 @@ const getAllClass = async (request, response) => {
   try {
     const subject_id = request.params.id;
 
-    console.log(request.cookies);
 
     if (request.cookies.user.type === 'admin') {
       const result = await Student.getAllClass(subject_id);

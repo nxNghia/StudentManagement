@@ -27,7 +27,6 @@ const List = ({
           <div
             onClick={() => {
               onClick(index);
-              console.log(index);
             }}
             key={index}
             className='list-row item'

@@ -13,7 +13,6 @@ export const getAllClasses = () => {
 };
 
 export const addClass = (data) => {
-    console.log(data)
     return dispatch => {
         API.post('/class/add', data)
         .then(() => {

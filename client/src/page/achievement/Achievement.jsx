@@ -13,13 +13,9 @@ const Achievement = ({ canEdit=false, userData }) => {
   const classes = useSelector(registedClassesSelector);
 
   useEffect(() => {
-    console.log(classes);
     dispatch(registedClasses(userData.id))
   }, [userData]);
 
-  useEffect(() => {
-    console.log(classes);
-  }, [classes]);
 
   return (
     <div className='achievement'>

@@ -13,11 +13,21 @@ const Registration = ({ soureName, onCancel, type }) => {
         student_id: user.id,
         subject_id: soureName.id,
         class_id: null,
-      })
+      });
       API.post("/student/courseRegister", {
         student_id: user.id,
         subject_id: soureName.id,
         class_id: null,
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      API.post("/student/courseRegister", {
+        student_id: user.id,
+        subject_id: soureName.subject_id,
+        class_id: soureName.id,
       })
         .then((res) => {
           console.log(res);
