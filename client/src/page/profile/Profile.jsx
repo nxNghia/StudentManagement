@@ -6,6 +6,7 @@ import { registedClasses } from "../../actions/user.actions";
 import Avatar from "../../img/user.svg";
 import "./Profile.css";
 import { update } from "../../actions/user.actions";
+import MySelect from "../../component/Select/MySelect";
 const Profile = ({ user }) => {
   const defaultData = {
     id: user.id,
@@ -18,12 +19,16 @@ const Profile = ({ user }) => {
     gender: user.gender,
     student_id: user.student_id,
   };
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState(false);
   const [editData, setEditData] = useState(defaultData);
   const handleEdit = () => {
     setIsEdit(true);
   };
+  const source = [
+    { value: true, label: "有り" },
+    { value: false, label: "無し" },
+  ];
   const handleChangeName = (e) => {
     setEditData({ ...editData, name: e.target.value });
   };
@@ -33,10 +38,11 @@ const Profile = ({ user }) => {
   const handleChangePassword = (e) => {
     setEditData({ ...editData, password: e.target.value });
   };
-  const handleChangeScholarShip = (e) => {
+  const handleChangeScholarShip = (value) => {
+    console.log(value);
     setEditData({
       ...editData,
-      scholarship: e.target.value,
+      scholarship: value.value,
     });
   };
   const handleChangeCpa = (e) => {
@@ -49,7 +55,7 @@ const Profile = ({ user }) => {
       setEditData(defaultData);
     } else {
       setEditData({ ...editData, cpa: cpa_float });
-      dispatch(update(editData))
+      dispatch(update(editData));
     }
     setIsEdit(false);
   };
@@ -121,11 +127,16 @@ const Profile = ({ user }) => {
                 {isEdit ? "スカラシップ" : "性別"}
               </div>
               {isEdit ? (
-                <input
-                  value={editData.scholarship}
-                  onChange={
-                    handleChangeScholarShip
-                  }></input>
+                <MySelect
+                  source={source}
+                  onChange={handleChangeScholarShip}
+                  defaultValue={{
+                    value: user.scholarship,
+                    label: user.scholarship
+                      ? "有り"
+                      : "無し",
+                  }}
+                />
               ) : (
                 <span>{user.gender ? "男" : "女"}</span>
               )}

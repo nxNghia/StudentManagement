@@ -71,7 +71,6 @@ const add = async (data) => {
 
 const update = async (data, updatePassword) => {
   const passwordUpdateQuery = updatePassword ? `password = '${data.password}', ` : '';
-
   const result = await pool.query(`UPDATE Student SET 
         email = '${data.email}', 
         ${passwordUpdateQuery}

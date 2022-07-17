@@ -9,7 +9,8 @@ const MySelect = ({
   source,
   minHeight,
   placeholder,
-  onChange
+  onChange,
+  defaultValue
 }) => {
   return (
     <Select
@@ -17,6 +18,7 @@ const MySelect = ({
       options={source}
       placeholder={placeholder}
       onChange={onChange}
+      defaultValue={defaultValue}
     />
   );
 };
