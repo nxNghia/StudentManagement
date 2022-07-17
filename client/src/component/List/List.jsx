@@ -7,35 +7,47 @@ const List = ({
   lists,
   special,
   ratio,
+  labels,
   columnName,
   onClick,
 }) => {
-  let labels = [];
   return (
     <div className='list-container'>
-        {
-          lists.length > 0 && (
-            <div className='list-row' style={{gridTemplateColumns: ratio}}>
-            {Object.keys(lists[0]).map((label, index) => {
-              labels.push(label)
+      {lists.length > 0 && (
+        <div
+          className='list-row'
+          style={{ gridTemplateColumns: ratio }}>
+          {columnName.map((column, index) => {
+            return <div key={index}>{column}</div>;
+          })}
+        </div>
+      )}
+      {lists.map((item, index) => {
+        return (
+          <div
+            onClick={() => {
+              onClick(index);
+              console.log(index);
+            }}
+            key={index}
+            className='list-row item'
+            style={{ gridTemplateColumns: ratio }}>
+            {labels.map((label, index) => {
               return (
-                  <div key={index}>{columnName[index]}</div>
-              )
+                <div
+                  key={index}
+                  className={
+                    special.includes(index)
+                      ? "special-font"
+                      : ""
+                  }>
+                  {item[label]}
+                </div>
+              );
             })}
           </div>
-            )
-        }
-        {lists.map((item,index) => {
-          return (
-            <div onClick={()=> onClick(index)} key={index} className='list-row item' style={{gridTemplateColumns: ratio}}>
-              {labels.map((label, index)=> {
-                return (
-                    <div key={index} className={special.includes(index) ? 'special-font' : ''}>{item[label]}</div>
-                )
-              })}
-            </div>
-          );
-        })}
+        );
+      })}
     </div>
   );
 };

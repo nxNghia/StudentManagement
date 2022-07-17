@@ -15,7 +15,6 @@ const getAll = async (request, response) => {
       .send({ message: "Failed to get all subjects", ...err });
   }
 };
-
 const getById = async (request, response) => {
   try {
     const subject_id = request.params.id;

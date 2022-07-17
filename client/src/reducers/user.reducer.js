@@ -9,7 +9,6 @@ const initState = {
 export const userReducer = (state = initState, action) => {
   switch (action.type) {
     case "LOGIN": {
-      console.log(action.data);
       return {
         ...state,
         user: action.data,

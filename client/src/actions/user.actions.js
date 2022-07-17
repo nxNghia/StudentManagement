@@ -27,8 +27,16 @@ export const registedClasses = (id) => {
 }
 
 export const update = (data) => {
-    return {
-        type: 'UPDATE',
-        data
+    return dispatch => {
+        API.post("/student/update", data)
+        .then(() => {
+          API.get(`/student/get/${data.id}`)
+            .then((res) => {
+              dispatch({
+                type: 'UPDATE',
+                data: res.data[0]
+              })
+            })
+        })
     }
 }

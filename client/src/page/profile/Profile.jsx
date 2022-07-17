@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { registedClasses } from "../../actions/user.actions";
 import Avatar from "../../img/user.svg";
 import "./Profile.css";
-import { API } from "../../app/API";
 import { update } from "../../actions/user.actions";
 const Profile = ({ user }) => {
   const defaultData = {
@@ -50,15 +49,7 @@ const Profile = ({ user }) => {
       setEditData(defaultData);
     } else {
       setEditData({ ...editData, cpa: cpa_float });
-      API.post("/student/update", editData)
-        .then(() => {
-          API.get(`/student/get/${user.id}`)
-            .then((res) => {
-              dispatch(update(res.data[0]))
-            })
-            .catch((err) => console.log(err));
-        })
-        .catch((err) => console.log(err));
+      dispatch(update(editData))
     }
     setIsEdit(false);
   };

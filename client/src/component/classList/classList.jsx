@@ -12,7 +12,6 @@ import { getAllClasses } from "../../actions/class.action";
 import { getAllAdmin } from "../../actions/common.actions";
 import { allAdminsSelector } from "../../selectors/common.selector";
 import { getAllSubjects } from "../../actions/subject.actions";
-
 const columnName = [
   'Id', 'クラス名', '担当者', '学生数', '終了日'
 ];
@@ -20,15 +19,23 @@ const columnName = [
 const ClassList = ({ canAdd, canAssign=false }) => {
   const dispatch = useDispatch();
   const data = useSelector(allClassesSelector);
+  const [allClasses, setAllClasses] = useState([])
+  const teachers = useSelector(allAdminsSelector)
   const [isOpen, setIsOpen] = useState(false)
   const [isOpen2, setIsOpen2] = useState(false)
+  const getTeacher = (id) => {
+    const teacher =  teachers.filter(teacher => teacher.id === id)
+    return teacher[0].name
+  } 
   const [source, setSource] = useState(null)
   const handleOnclick = (index) => {
     setIsOpen2(true)
-    setSource({...data[index]})
+    setSource({...allClasses[index]})
   }
 
   useEffect(() => {
+    setAllClasses(data.map((item)=> ({...item,end_date: item.end_date.slice(0,10) , teacher: getTeacher(item.teacher)})))
+    dispatch(getAllAdmin());
     dispatch(getAllClasses());
     dispatch(getAllAdmin());
     dispatch(getAllSubjects());
@@ -40,7 +47,7 @@ const ClassList = ({ canAdd, canAssign=false }) => {
         {canAdd && <button onClick={()=>setIsOpen(true)} className="add" style={{ borderRadius: "5px" }}>追加</button>}
         <Input/>
       </div>
-      <List onClick={id => handleOnclick(id)} lists={data} columnName={columnName} special={[2]} ratio='5% auto 21%  18% 14%'/>
+      <List onClick={id => handleOnclick(id)} lists={allClasses} columnName={columnName} special={[2]} ratio='5% auto 21%  18% 14%' labels={['id', 'name', 'teacher', 'students', 'end_date']}/>
       <MODAL open={isOpen && canAdd} setClose={()=> {setIsOpen(false)}} body = {<ClassModal/>}/>
       <MODAL open={isOpen2 && canAssign} setClose={()=> {setIsOpen2(false)}} body={<Registration soureName={source} label="className"/>}/>
     </div>

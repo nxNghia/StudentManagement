@@ -45,7 +45,6 @@ const remove = async (id) => {
 
   return result;
 };
-
 module.exports = {
   getAll,
   getById,

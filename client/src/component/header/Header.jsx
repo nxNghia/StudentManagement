@@ -31,12 +31,8 @@ const Header = ({ onLogOut }) => {
           className="avatar"
           onClick={() => {
             cookie.remove("user", { path: "/" });
-            API.post("/login/logout", { withCredential: true })
-              .then((res) => {
-                dispatch(logout());
-                onLogOut();
-              })
-              .catch((err) => console.log(err));
+            dispatch(logout())
+            onLogOut()
           }}
         >
           <img src={UserAvatar} alt="" />
