@@ -100,11 +100,9 @@ const Mark = async (request, response) => {
       result : request.body.result,
       converttocharacter :request.body.converttocharacter,
     };
-    console.log(data)
     const result = await Student.Mark(data);  
     response.status(200).send(result);
   } catch (err) {
-    console.log(err)
     response
       .status(400)
       .send({ message: "Failed to get update mark", ...err });

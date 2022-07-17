@@ -13,7 +13,7 @@ const List = ({
 }) => {
   return (
     <div className='list-container'>
-      {lists.length > 0 && (
+      {lists.length > 0 ? (
         <div
           className='list-row'
           style={{ gridTemplateColumns: ratio }}>
@@ -21,7 +21,7 @@ const List = ({
             return <div key={index}>{column}</div>;
           })}
         </div>
-      )}
+      ) : 'ありません。'}
       {lists.map((item, index) => {
         return (
           <div

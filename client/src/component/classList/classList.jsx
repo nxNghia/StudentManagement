@@ -8,10 +8,14 @@ import List from '../List/List';
 import Input from "../input/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { allClassesSelector } from "../../selectors/class.selector";
-import { getAllClasses } from "../../actions/class.action";
+import { getAllAvailableClasses, getAllClasses } from "../../actions/class.action";
 import { getAllAdmin } from "../../actions/common.actions";
 import { allAdminsSelector } from "../../selectors/common.selector";
 import { getAllSubjects } from "../../actions/subject.actions";
+import Cookies from "universal-cookie";
+
+const cookie = new Cookies();
+
 const columnName = [
   'Id', 'クラス名', '担当者', '学生数', '終了日'
 ];
@@ -30,20 +34,27 @@ const ClassList = ({ canAdd, canAssign=false }) => {
   const [source, setSource] = useState(null)
   const handleOnclick = (index) => {
     if( canAdd === false) {
-      setIsOpen2(true)
-      setSource({...allClasses[index]})
+      setIsOpen2(true);
+      setSource({...allClasses[index]});
     }
   }
 
   useEffect(() => {
     setAllClasses(data.map((item)=> ({...item,end_date: item.end_date.slice(0,10) , teacher: getTeacher(item.teacher)})))
     dispatch(getAllAdmin());
-    dispatch(getAllClasses());
+    const auth = cookie.get('user');
+    
+    if (auth.type === 'admin') {
+      dispatch(getAllClasses());
+    } else {
+      dispatch(getAllAvailableClasses(auth.id));
+    }
+
     dispatch(getAllSubjects());
   }, []);
 
   useEffect(() => {
-    setAllClasses(data);
+    setAllClasses(data.map((item)=> ({...item,end_date: item.end_date.slice(0,10) , teacher: getTeacher(item.teacher)})));
   }, [data]);
 
   return (

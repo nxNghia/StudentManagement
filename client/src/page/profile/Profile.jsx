@@ -39,7 +39,6 @@ const Profile = ({ user }) => {
     setEditData({ ...editData, password: e.target.value });
   };
   const handleChangeScholarShip = (value) => {
-    console.log(value);
     setEditData({
       ...editData,
       scholarship: value.value,

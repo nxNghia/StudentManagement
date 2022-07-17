@@ -45,7 +45,10 @@ const SubjectList = ({ canAdd }) => {
   }, []);
 
   useEffect(() => {
-    setAllSubjects(data);
+    setAllSubjects(data.map((item) => ({
+      ...item,
+      faculty: getFaculty(item.faculty),
+    })));
   }, [data]);
 
   return (

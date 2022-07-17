@@ -13,12 +13,23 @@ export const getAllClasses = () => {
 };
 
 export const addClass = (data) => {
-    console.log(data);
     return dispatch => {
         API.post('/class/add', data)
         .then(() => {
             dispatch({type: 'ADD_CLASS'});
             dispatch(getAllClasses());
         });
+    }
+}
+
+export const getAllAvailableClasses = (id) => {
+    return dispatch => {
+        API.get(`/student/getClassesAvailable/${id}`)
+        .then(response => {
+            dispatch({
+                type: 'GET_ALL_CLASSES',
+                data: response.data
+            })
+        })
     }
 }
