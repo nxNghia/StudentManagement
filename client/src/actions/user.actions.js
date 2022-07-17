@@ -25,3 +25,10 @@ export const registedClasses = (id) => {
         });
     }
 }
+
+export const update = (data) => {
+    return {
+        type: 'UPDATE',
+        data
+    }
+}
