@@ -38,8 +38,7 @@ const ClassModal = ({onClose}) => {
       </div>
       <div className='form-content'>
         <div className='form-label'>終了日</div>
-        <Input onChange={e => setNewClass({...newClass, end_date: e.target.value})} />
-        <i class='fa fa-calendar' aria-hidden='true'></i>
+        <Input type='date' onChange={value => setNewClass({...newClass, end_date: value.target.value})} />
       </div>
       <div className='btn-container'>
         <button className='accept-add' onClick={handleSave}>
