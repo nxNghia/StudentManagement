@@ -20,6 +20,7 @@ import {
   userSelector,
 } from "./selectors/user.selector";
 import { getAllFaculties } from "./actions/common.actions";
+import { getAllStudents } from "./actions/student.action";
 const cookie = new Cookies();
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
   useEffect(() => {
     const auth = cookie.get("user");
     dispatch(getAllFaculties());
+    dispatch(getAllStudents({type: 'id', order: 'asc'}));
     if (auth) {
       if (isLogin === false) {
         const end_point = auth.type === 'student' ? `/student/get/${auth.id}` : `/admin/get/${auth.id}`
