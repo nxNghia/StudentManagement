@@ -34,13 +34,11 @@ const getById = async (request, response) => {
 
 const add = async (request, response) => {
   try {
-    const salt = await bcrypt.genSalt(10);
     const data = {
       email: request.body.email,
       password: request.body.password,
       name: request.body.name,
     };
-    data.password = await bcrypt.hash(data.password, salt);
     const result = await Admin.add(data);
 
     response.status(200).send(result);

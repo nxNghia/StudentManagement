@@ -30,11 +30,9 @@ const LogIn = async (req, res) => {
     } else {
       const query_admin = `SELECT * FROM Admin WHERE email = '${email}';`;
       const user = await Admin.query(query_admin);
+      console.log(user.rows);
       if (user.rows[0]) {
-        const valid = await bcrypt.compare(
-          password,
-          user.rows[0].password
-        );
+        const valid = password === user.rows[0].password;
         if (valid) {
           res.cookie("user", {
             id: user.rows[0].id,
